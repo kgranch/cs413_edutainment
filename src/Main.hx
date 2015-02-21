@@ -74,7 +74,15 @@ class Main extends Sprite {
 	
 	private function handleInput(event:KeyboardEvent){
 		
-		if (event.keyCode == Keyboard.SPACE){
+		if (event.keyCode == Keyboard.SPACE) {
+			
+			var game = new Game(rootSprite);
+			game.start();
+			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
+			transitionOut(function() {
+				this.removeFromParent();
+				this.dispose();
+			});
 		
 			if (selection == 0) {
 				// NewGame

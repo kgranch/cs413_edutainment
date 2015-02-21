@@ -25,10 +25,9 @@ class Root extends Sprite {
 
         assets = new AssetManager();
         assets.enqueue("assets/Grandpa.png");
-        /*
-            The sprite sheet contains the following items (png):
-            Credits, Help, NewGame, Title, blue, green, purple, red, yellow
-        */
+		
+		// Levels
+		assets.enqueue("assets/levels/chapter1.txt");
 		
         assets.loadQueue(function onProgress(ratio:Float) {
             haxe.Log.clear();
@@ -36,7 +35,7 @@ class Root extends Sprite {
                 haxe.Log.clear();
                 startup.removeChild(startup.loadingBitmap);
                 var menu = new Main(rootSprite, highScore);
-                menu.start();                
+                menu.start();
             }
 
         });
