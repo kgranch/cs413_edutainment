@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:76284ed0780f939eced8c24fbaf55cce:5bcb9a101f4d50cdc9462cf247d8dcc0:c43aba4fdaea3040fc976da76a6a1485$ -->
+<TextureAtlas imagePath="Sprites.png">
+    <SubTexture name="Boy1" x="2" y="2" width="50" height="55"/>
+    <SubTexture name="Boy2" x="2" y="59" width="50" height="55"/>
+    <SubTexture name="Boy3" x="2" y="116" width="50" height="55"/>
+    <SubTexture name="Fire1" x="2" y="173" width="35" height="35"/>
+    <SubTexture name="Fire2" x="2" y="210" width="35" height="35"/>
+    <SubTexture name="Fire3" x="2" y="247" width="35" height="35"/>
+    <SubTexture name="Grandpa1" x="2" y="284" width="55" height="120"/>
+    <SubTexture name="Grandpa2" x="2" y="406" width="55" height="120"/>
+    <SubTexture name="Grandpa3" x="2" y="528" width="55" height="120"/>
+</TextureAtlas>

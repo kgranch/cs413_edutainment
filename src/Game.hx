@@ -1,5 +1,10 @@
 import starling.display.Sprite;
 import starling.display.Image;
+import starling.animation.Juggler;
+import starling.events.Event;
+import starling.display.MovieClip;
+import starling.textures.Texture;
+import starling.textures.TextureAtlas;
 import starling.core.Starling;
 import starling.text.TextField;
 import starling.events.KeyboardEvent;
@@ -33,6 +38,7 @@ class Game extends Sprite
 	var bg:Image;
 	var grandpa:Image;
 	var boy:Image;
+	var fire: Image;
 
 	
 	public function new(root:Sprite) {
@@ -51,16 +57,21 @@ class Game extends Sprite
 		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 
 		bg = new Image(Root.assets.getTexture("Background"));
-		grandpa = new Image(Root.assets.getTexture("Grandpa"));
-		boy = new Image(Root.assets.getTexture("Boy"));
+		grandpa = new Image(Root.assets.getTexture("Grandpa1"));
+		boy = new Image(Root.assets.getTexture("Boy1"));
+		fire = new Image(Root.assets.getTexture("Fire1"));
 
 		grandpa.x = 270;
 		grandpa.y = 190;
 		boy.x = 190;
 		boy.y = 250;
+		fire.x = 435;
+		fire.y = 255;
 		this.addChild(bg);
 		this.addChild(grandpa);
 		this.addChild(boy);
+		this.addChild(fire);
+
 		rootSprite.addChild(this);
 		
 		textBox.x = 20;
