@@ -1,12 +1,10 @@
 import starling.display.Sprite;
 import starling.core.Starling;
-
+import starling.display.Image;
 import starling.text.TextField;
-
 import haxe.io.Bytes;
 import haxe.io.BytesInput;
 import haxe.io.Eof;
-
 import haxe.Timer;
 
 class Game extends Sprite
@@ -24,7 +22,9 @@ class Game extends Sprite
 	var animTimer:Timer;
 	
 	var textBox:TextField = new TextField(512, 100, "This is a test", "5x7");
-	
+	var bg:Image;
+	var grandpa:Image;
+
 	public function new(root:Sprite) {
 		super();
 		this.rootSprite = root;
@@ -33,12 +33,20 @@ class Game extends Sprite
 	}
 	
 	public function start() {
-		
-		rootSprite.addChild(this);
-		
+
 		var stage = Starling.current.stage;
 		var stageWidth:Float = Starling.current.stage.stageWidth;
 		var stageHeight:Float = Starling.current.stage.stageHeight;
+
+		bg = new Image(Root.assets.getTexture("Background"));
+		grandpa = new Image(Root.assets.getTexture("Grandpa"));
+		grandpa.x = 270;
+		grandpa.y = 190;
+		this.addChild(bg);
+		this.addChild(grandpa);
+		rootSprite.addChild(this);
+		
+
 		
 		textBox.x = 20;
 		textBox.y = stageHeight - 70;
