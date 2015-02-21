@@ -27,6 +27,7 @@ class Main extends Sprite {
 	private var transitionSpeed = 0.5;
 	private var tween:Tween;
 	public var bgcolor = 255;
+	public var bg:Image;
 	public var center = new Vector3D(Starling.current.stage.stageWidth / 2.5, Starling.current.stage.stageHeight / 2.5);
 
 	public var sound:Sound = new Sound();
