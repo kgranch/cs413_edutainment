@@ -1,13 +1,15 @@
 import starling.display.Sprite;
 import starling.core.Starling;
-
 import starling.text.TextField;
+import starling.events.KeyboardEvent;
 
 import haxe.io.Bytes;
 import haxe.io.BytesInput;
 import haxe.io.Eof;
 
 import haxe.Timer;
+
+import flash.ui.Keyboard;
 
 class Game extends Sprite
 {
@@ -34,11 +36,11 @@ class Game extends Sprite
 	
 	public function start() {
 		
-		rootSprite.addChild(this);
-		
 		var stage = Starling.current.stage;
 		var stageWidth:Float = Starling.current.stage.stageWidth;
 		var stageHeight:Float = Starling.current.stage.stageHeight;
+		
+		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 		
 		textBox.x = 20;
 		textBox.y = stageHeight - 70;
@@ -50,18 +52,39 @@ class Game extends Sprite
 		
 		currentField = popTextObject();
 		
-		animTimer = new Timer(10);
-		animTimer.run = animationTick;
+		startTextAnim();
+		
+		rootSprite.addChild(this);
 		
 	}
 	
-	function animationTick() {
+	public function cleanup() {
 		
-		//trace("\n" + currentField.text.substr(0, renderProgress));
+	}
+	
+	function onKeyDown(event:KeyboardEvent) {
+		if (event.keyCode == Keyboard.SPACE)
+			skipTextAnim();
+	}
+	
+	function startTextAnim() {
+		renderProgress = 0;
+		animTimer = new Timer(10);
+		animTimer.run = animationTick;
+	}
+	
+	function skipTextAnim() {
+		textBox.text = currentField.text;
+		animTimer.stop();
+	}
+	
+	function animationTick() {
 		textBox.text = currentField.text.substr(0, renderProgress);
 		
 		if (renderProgress < currentField.text.length)
 			renderProgress++;
+		else
+			animTimer.stop();
 	}
 	
 	function load() {
