@@ -40,9 +40,9 @@ class Game extends Sprite
 		var stageWidth:Float = Starling.current.stage.stageWidth;
 		var stageHeight:Float = Starling.current.stage.stageHeight;
 		
-		textBox.x = 30;
+		textBox.x = 20;
 		textBox.y = stageHeight - 70;
-		textBox.fontSize = 14;
+		textBox.fontSize = 16;
 		textBox.color = 0xffffff;
 		textBox.hAlign = "left";
 		textBox.vAlign = "top";
