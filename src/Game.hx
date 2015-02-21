@@ -22,6 +22,7 @@ class Game extends Sprite
 	
 	var currentField:TextObject;
 	var renderProgress = 0; // How far in rendering the text animation we are (in characters)
+	var animating = false;
 	
 	var animTimer:Timer;
 	
@@ -63,18 +64,35 @@ class Game extends Sprite
 	}
 	
 	function onKeyDown(event:KeyboardEvent) {
-		if (event.keyCode == Keyboard.SPACE)
-			skipTextAnim();
+		if (event.keyCode == Keyboard.SPACE) {
+			if(animating)
+				skipTextAnim();
+			else {
+				currentField = popTextObject();
+				if (currentField == null)
+				{
+					// Exit?
+				}
+				else
+				{
+					startTextAnim();
+				}
+			}
+		}
 	}
 	
 	function startTextAnim() {
 		renderProgress = 0;
+		animating = true;
+		if(animTimer != null)
+			animTimer.stop();
 		animTimer = new Timer(10);
 		animTimer.run = animationTick;
 	}
 	
 	function skipTextAnim() {
 		textBox.text = currentField.text;
+		animating = false;
 		animTimer.stop();
 	}
 	
@@ -83,8 +101,10 @@ class Game extends Sprite
 		
 		if (renderProgress < currentField.text.length)
 			renderProgress++;
-		else
+		else {
 			animTimer.stop();
+			animating = false;
+		}
 	}
 	
 	function load() {
@@ -118,7 +138,6 @@ class Game extends Sprite
 	}
 	
 	function popTextObject():TextObject {
-		renderProgress = 0;
 		if(fieldProgress < this.fields.length)
 			return this.fields[fieldProgress++];
 		return null;
