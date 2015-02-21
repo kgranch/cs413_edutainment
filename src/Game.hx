@@ -32,6 +32,7 @@ class Game extends Sprite
 	
 	var bg:Image;
 	var grandpa:Image;
+	var boy:Image;
 
 	
 	public function new(root:Sprite) {
@@ -51,10 +52,15 @@ class Game extends Sprite
 
 		bg = new Image(Root.assets.getTexture("Background"));
 		grandpa = new Image(Root.assets.getTexture("Grandpa"));
+		boy = new Image(Root.assets.getTexture("Boy"));
+
 		grandpa.x = 270;
 		grandpa.y = 190;
+		boy.x = 190;
+		boy.y = 250;
 		this.addChild(bg);
 		this.addChild(grandpa);
+		this.addChild(boy);
 		rootSprite.addChild(this);
 		
 		textBox.x = 20;
