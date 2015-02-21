@@ -46,4 +46,8 @@ class TextObject extends Sprite
 		}
 		return out;
 	}
+	
+	public function checkAnswer(num:Int):Bool {
+		return order[num - 1] == 0;
+	}
 }

@@ -61,30 +61,57 @@ class Game extends Sprite
 	}
 	
 	public function cleanup() {
-		
+		Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+		animTimer.stop();
 	}
 	
 	function onKeyDown(event:KeyboardEvent) {
 		if (event.keyCode == Keyboard.SPACE) {
 			if(animating)
 				skipTextAnim();
-			else if(fieldState == FieldState.TEXT) {
-				currentField = popTextObject();
-				if (currentField == null)
-				{
-					// Exit?
-				}
-				else
-				{
-					startTextAnim();
-				}
-			}
+			else if(fieldState == FieldState.TEXT)
+				advanceField();
 		}
 		else if (event.keyCode == Keyboard.C) {
 			if (fieldState == FieldState.TEXT) {
 				fieldState = FieldState.CORRECTIONS;
 				startTextAnim();
 			}
+		}
+		else if (fieldState == FieldState.CORRECTIONS) {
+			var n = -1;
+			switch(event.keyCode) {
+				case Keyboard.NUMBER_1: n = 1;
+				case Keyboard.NUMBER_2: n = 2;
+				case Keyboard.NUMBER_3: n = 3;
+				case Keyboard.NUMBER_4: n = 4;
+			}
+			if(n >= 0) {
+				if (currentField.checkAnswer(n))
+					trace("Correct!");
+				else
+					trace("Incorrect!");
+				advanceField();
+			}
+		}
+	}
+	
+	function advanceField() {
+		currentField = popTextObject();
+		if (currentField == null)
+		{
+			// Exit
+			var menu = new Main(rootSprite);
+			menu.start();
+			cleanup();
+			//transitionOut(function() {
+				this.removeFromParent();
+				this.dispose();
+			//});
+		}
+		else
+		{
+			startTextAnim();
 		}
 	}
 	
@@ -98,14 +125,12 @@ class Game extends Sprite
 	}
 	
 	function skipTextAnim() {
-		//textBox.text = currentField.text;
 		textBox.text = getTruncatedText();
 		animating = false;
 		animTimer.stop();
 	}
 	
 	function animationTick() {
-		//textBox.text = currentField.text.substr(0, renderProgress);
 		textBox.text = getTruncatedText(renderProgress);
 		
 		if (renderProgress < currentField.text.length)
