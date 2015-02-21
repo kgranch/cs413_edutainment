@@ -24,28 +24,10 @@ class Root extends Sprite {
     public function start(startup:Startup) {
 
         assets = new AssetManager();
-        assets.enqueue("assets/font/font.png");
-        assets.enqueue("assets/font/font.fnt");
-        assets.enqueue("assets/Snaketris.mp3");
-		assets.enqueue("assets/EraseSnake.mp3");
-		assets.enqueue("assets/Crawl.mp3");
-		assets.enqueue("assets/GameOver.mp3");
-		assets.enqueue("assets/LevelUp.mp3");
-		assets.enqueue("assets/SelectOption.mp3");
-		assets.enqueue("assets/TouchGround.mp3");
-        assets.enqueue("assets/Dead.mp3");
-        assets.enqueue("assets/Snake.png");
-		assets.enqueue("assets/Tile.png");
-		assets.enqueue("assets/TileBottomRed.png");
-		assets.enqueue("assets/TileTopRed.png");
-		assets.enqueue("assets/armor_block.png");
-        assets.enqueue("assets/SnaketrisSprites.png");
-        assets.enqueue("assets/SnaketrisSprites.xml");
-        assets.enqueue("assets/background.png");
-        /*
-            The sprite sheet contains the following items (png):
-            Credits, Help, NewGame, Title, blue, green, purple, red, yellow
-        */
+        assets.enqueue("assets/Grandpa.png");
+		
+		// Levels
+		assets.enqueue("assets/levels/chapter1.txt");
 		
         assets.loadQueue(function onProgress(ratio:Float) {
             haxe.Log.clear();
@@ -53,7 +35,7 @@ class Root extends Sprite {
                 haxe.Log.clear();
                 startup.removeChild(startup.loadingBitmap);
                 var menu = new Main(rootSprite, highScore);
-                menu.start();                
+                menu.start();
             }
 
         });

@@ -29,8 +29,6 @@ class Main extends Sprite {
 	public var bgcolor = 255;
 	public var bg:Image;
 	public var center = new Vector3D(Starling.current.stage.stageWidth / 2.5, Starling.current.stage.stageHeight / 2.5);
-	private var highScore:Int = 10000;
-	public var highScore_rcrd:TextField;
 
 	public var sound:Sound = new Sound();
 	public var soundReq:URLRequest = new URLRequest("assets/Snaketris.mp3");
@@ -38,13 +36,11 @@ class Main extends Sprite {
 
 	public function new(rootSprite:Sprite, highScore:Int) {
 		this.rootSprite = rootSprite;
-		this.highScore = highScore;
 		super();
 	}
 	
 	public function start() {
 		
-
 		this.pivotX = center.x;
 		this.pivotY = center.y;
 		this.x = center.x;
@@ -52,30 +48,7 @@ class Main extends Sprite {
 		this.scaleX = 8;
 		this.scaleY = 8;
 
-		bg = new Image(Root.assets.getTexture("background"));
-
-
-		Root.assets.playSound("Snaketris", 0, 9999);
 		/*
-		sound.load(soundReq);
-		soundChannel = sound.play();
-		soundChannel.addEventListener(Event.SOUND_COMPLETE, soundLoop);
-		*/
-		title = new Image(Root.assets.getTexture("Title"));
-		title.x = center.x - 200;
-		title.y = center.y - 300;
-		title.scaleX = 3;
-		title.scaleY = 3;
-		this.addChild(bg);
-		this.addChild(title);
-		/*
-		var title:TextField = new TextField(490, 700, "Snaketris", "font");
-		title.fontSize = 100;
-		title.color = Color.WHITE;
-		title.x = center.x - 150;
-		title.y = -250;
-		this.addChild(title);
-		*/
 		buttons = [new Image(Root.assets.getTexture("NewGame")), new Image(Root.assets.getTexture("Help")), new Image(Root.assets.getTexture("Credits"))];
 		for (i in 0...buttons.length) {
 			var button = buttons[i];
@@ -83,41 +56,37 @@ class Main extends Sprite {
 			button.y = 300  + (i * 150);
 			this.addChild(button);
 		}
+		*/
 		
 		//Enlarge the first highlighted option by default
-		buttons[0].scaleX = 1.5;
-		buttons[0].scaleY = 1.5;
-		
-		highScore_rcrd = new TextField(500, 500, "Game Over!", "font");
-		highScore_rcrd.text = "High Score:    " + Std.string(highScore);
-		highScore_rcrd.x = center.x - 200;
-		highScore_rcrd.y = center.y - 625;
-		highScore_rcrd.fontSize = 30;
-        highScore_rcrd.color = 0x66FF33;
-		this.addChild(highScore_rcrd);
+		//buttons[0].scaleX = 1.5;
+		//buttons[0].scaleY = 1.5;
 		
 		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		
 		selection = 0;
 		
 		rootSprite.addChild(this);
-		startAnim();
+		//startAnim();
 		transitionIn();
 
 	}
-	/*
-	private function soundLoop(evt:Event) {
-		soundChannel = sound.play();
-		soundChannel.addEventListener(Event.SOUND_COMPLETE, soundLoop);
-	}
-	*/
+	
 	private function handleInput(event:KeyboardEvent){
 		
-		if (event.keyCode == Keyboard.SPACE){
+		if (event.keyCode == Keyboard.SPACE) {
+			
+			var game = new Game(rootSprite);
+			game.start();
+			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
+			transitionOut(function() {
+				this.removeFromParent();
+				this.dispose();
+			});
 		
 			if (selection == 0) {
 				// NewGame
-				var game = new Game(rootSprite, highScore);
+				/*var game = new Game(rootSprite, highScore);
 				game.bgcolor = this.bgcolor;
 				game.startGame(rootSprite);
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
@@ -125,10 +94,11 @@ class Main extends Sprite {
 				transitionOut(function() {
 					this.removeFromParent();
 					this.dispose();
-				});
+				});*/
 			}
 			else if (selection == 1) {
 				// Help
+				/*
 				var help = new Help(rootSprite, highScore);
 				help.bgcolor = this.bgcolor;
 				help.start();
@@ -137,11 +107,12 @@ class Main extends Sprite {
 				helpTrans(function() {
 					this.removeFromParent();
 					this.dispose();
-				});
+				}); */
 
 			}
 			else if (selection == 2) {
 				// Credits
+				/*
 				var credits = new Credits(rootSprite, highScore);
 				credits.bgcolor = this.bgcolor;
 				credits.start();
@@ -151,7 +122,7 @@ class Main extends Sprite {
 					this.removeFromParent();
 					this.dispose();
 
-				});
+				}); */
 
 			}
 		}
@@ -159,6 +130,7 @@ class Main extends Sprite {
 		{	
 			// Only allow moving if the current tween does not exist.
 			if (event.keyCode == Keyboard.UP) {
+				/*
 				Root.assets.playSound("SelectOption");
 				
 				tween = new Tween(this.buttons[selection], rotateSpeed, Transitions.EASE_IN_OUT);
@@ -172,8 +144,10 @@ class Main extends Sprite {
 				tween.animate("scaleX", 1.5);
 				tween.animate("scaleY", 1.5);
 				Starling.juggler.add(tween);
+				*/
 			}
 			else if (event.keyCode == Keyboard.DOWN) {
+				/*
 				Root.assets.playSound("SelectOption");
 
 				tween = new Tween(this.buttons[selection], rotateSpeed, Transitions.EASE_IN_OUT);
@@ -186,7 +160,7 @@ class Main extends Sprite {
 				tween = new Tween(this.buttons[selection], rotateSpeed, Transitions.EASE_IN_OUT);
 				tween.animate("scaleX", 1.5);
 				tween.animate("scaleY", 1.5);
-				Starling.juggler.add(tween);
+				Starling.juggler.add(tween); */
 			}
 		}
 	}
