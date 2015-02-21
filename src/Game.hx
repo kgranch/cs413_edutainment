@@ -21,6 +21,7 @@ class Game extends Sprite
 	var fields:Array<TextObject>; // All of the textobject fields
 	
 	var currentField:TextObject;
+	var fieldState = FieldState.TEXT;
 	var renderProgress = 0; // How far in rendering the text animation we are (in characters)
 	var animating = false;
 	
@@ -67,7 +68,7 @@ class Game extends Sprite
 		if (event.keyCode == Keyboard.SPACE) {
 			if(animating)
 				skipTextAnim();
-			else {
+			else if(fieldState == FieldState.TEXT) {
 				currentField = popTextObject();
 				if (currentField == null)
 				{
@@ -77,6 +78,12 @@ class Game extends Sprite
 				{
 					startTextAnim();
 				}
+			}
+		}
+		else if (event.keyCode == Keyboard.C) {
+			if (fieldState == FieldState.TEXT) {
+				fieldState = FieldState.CORRECTIONS;
+				startTextAnim();
 			}
 		}
 	}
@@ -91,13 +98,15 @@ class Game extends Sprite
 	}
 	
 	function skipTextAnim() {
-		textBox.text = currentField.text;
+		//textBox.text = currentField.text;
+		textBox.text = getTruncatedText();
 		animating = false;
 		animTimer.stop();
 	}
 	
 	function animationTick() {
-		textBox.text = currentField.text.substr(0, renderProgress);
+		//textBox.text = currentField.text.substr(0, renderProgress);
+		textBox.text = getTruncatedText(renderProgress);
 		
 		if (renderProgress < currentField.text.length)
 			renderProgress++;
@@ -105,6 +114,18 @@ class Game extends Sprite
 			animTimer.stop();
 			animating = false;
 		}
+	}
+	
+	function getTruncatedText(?len:Int):String {
+		var text = "";
+		if (fieldState == FieldState.TEXT)
+			text = currentField.text;
+		else if (fieldState == FieldState.CORRECTIONS)
+			text = currentField.getOptionText();
+		
+		if (len != null)
+			text = text.substr(0, len);
+		return text;
 	}
 	
 	function load() {
@@ -120,10 +141,10 @@ class Game extends Sprite
 				field.correct = bi.readLine() == "C";
 				field.text = bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine();
 				field.options = new Array<String>();
-				field.options.push(bi.readLine());
-				field.options.push(bi.readLine());
-				field.options.push(bi.readLine());
-				field.options.push(bi.readLine());
+				field.options.push(bi.readLine().substr(3));
+				field.options.push(bi.readLine().substr(3));
+				field.options.push(bi.readLine().substr(3));
+				field.options.push(bi.readLine().substr(3));
 				fields.push(field);
 				//trace("Added field.");
 			}
@@ -143,4 +164,12 @@ class Game extends Sprite
 		return null;
 		
 	}
+}
+
+enum FieldState {
+	TEXT;
+	CORRECTIONS;
+	NO_ERROR_RESPONSE;
+	ERROR_CORRECT_RESPONSE;
+	ERROR_INCORRECT_RESPONSE;
 }
