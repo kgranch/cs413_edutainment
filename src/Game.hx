@@ -1,13 +1,16 @@
 import starling.display.Sprite;
+import starling.display.Image;
 import starling.core.Starling;
-
 import starling.text.TextField;
+import starling.events.KeyboardEvent;
 
 import haxe.io.Bytes;
 import haxe.io.BytesInput;
 import haxe.io.Eof;
+
 import haxe.Timer;
-import starling.display.Image;
+
+import flash.ui.Keyboard;
 
 class Game extends Sprite
 {
@@ -19,11 +22,14 @@ class Game extends Sprite
 	var fields:Array<TextObject>; // All of the textobject fields
 	
 	var currentField:TextObject;
+	var fieldState = FieldState.TEXT;
 	var renderProgress = 0; // How far in rendering the text animation we are (in characters)
+	var animating = false;
 	
 	var animTimer:Timer;
 	
-	var textBox:TextField = new TextField(512, 100, "This is a test", "5x7");
+	var textBox:TextField = new TextField(512, 100, "", "5x7");
+	
 	var bg:Image;
 	var grandpa:Image;
 
@@ -37,11 +43,11 @@ class Game extends Sprite
 	
 	public function start() {
 		
-		rootSprite.addChild(this);
-		
 		var stage = Starling.current.stage;
 		var stageWidth:Float = Starling.current.stage.stageWidth;
 		var stageHeight:Float = Starling.current.stage.stageHeight;
+		
+		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 
 		bg = new Image(Root.assets.getTexture("Background"));
 		grandpa = new Image(Root.assets.getTexture("Grandpa"));
@@ -61,18 +67,109 @@ class Game extends Sprite
 		
 		currentField = popTextObject();
 		
-		animTimer = new Timer(10);
-		animTimer.run = animationTick;
+		startTextAnim();
+		
+		rootSprite.addChild(this);
 		
 	}
 	
+	public function cleanup() {
+		Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+		animTimer.stop();
+	}
+	
+	function onKeyDown(event:KeyboardEvent) {
+		if (event.keyCode == Keyboard.SPACE) {
+			if(animating)
+				skipTextAnim();
+			else if (fieldState != FieldState.CORRECTIONS) {
+				fieldState = FieldState.TEXT;
+				advanceField();
+			}
+		}
+		else if (event.keyCode == Keyboard.C) {
+			if (fieldState == FieldState.TEXT) {
+				fieldState = FieldState.CORRECTIONS;
+				startTextAnim();
+			}
+		}
+		else if (fieldState == FieldState.CORRECTIONS) {
+			var n = -1;
+			switch(event.keyCode) {
+				case Keyboard.NUMBER_1: n = 1;
+				case Keyboard.NUMBER_2: n = 2;
+				case Keyboard.NUMBER_3: n = 3;
+				case Keyboard.NUMBER_4: n = 4;
+			}
+			if (n >= 0) {
+				if (currentField.correct)
+					fieldState = FieldState.NO_ERROR_RESPONSE;
+				else if (currentField.checkAnswer(n))
+					fieldState = FieldState.ERROR_CORRECT_RESPONSE;
+				else
+					fieldState = FieldState.ERROR_INCORRECT_RESPONSE;
+				startTextAnim();
+			}
+		}
+	}
+	
+	function advanceField() {
+		currentField = popTextObject();
+		if (currentField == null)
+		{
+			// Exit
+			var menu = new Main(rootSprite);
+			menu.start();
+			cleanup();
+			//transitionOut(function() {
+				this.removeFromParent();
+				this.dispose();
+			//});
+		}
+		else
+		{
+			startTextAnim();
+		}
+	}
+	
+	function startTextAnim() {
+		renderProgress = 0;
+		animating = true;
+		if(animTimer != null)
+			animTimer.stop();
+		animTimer = new Timer(10);
+		animTimer.run = animationTick;
+	}
+	
+	function skipTextAnim() {
+		textBox.text = getText();
+		animating = false;
+		animTimer.stop();
+	}
+	
 	function animationTick() {
+		var fullText = getText();
+		textBox.text = fullText.substr(0, renderProgress);
 		
-		//trace("\n" + currentField.text.substr(0, renderProgress));
-		textBox.text = currentField.text.substr(0, renderProgress);
-		
-		if (renderProgress < currentField.text.length)
+		if (renderProgress < fullText.length)
 			renderProgress++;
+		else {
+			animTimer.stop();
+			animating = false;
+		}
+	}
+	
+	function getText():String {
+		var text = "";
+		switch(fieldState) {
+			case FieldState.TEXT: 						text = currentField.text;
+			case FieldState.CORRECTIONS: 				text = currentField.getOptionText();
+			case FieldState.ERROR_CORRECT_RESPONSE:		text = "Correct!";
+			case FieldState.ERROR_INCORRECT_RESPONSE:	text = "Incorrect!";
+			case FieldState.NO_ERROR_RESPONSE:			text = "No Errors Here!";
+		}
+		
+		return text;
 	}
 	
 	function load() {
@@ -88,16 +185,13 @@ class Game extends Sprite
 				field.correct = bi.readLine() == "C";
 				field.text = bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine();
 				field.options = new Array<String>();
-				field.options.push(bi.readLine());
-				field.options.push(bi.readLine());
-				field.options.push(bi.readLine());
-				field.options.push(bi.readLine());
+				field.options.push(bi.readLine().substr(3));
+				field.options.push(bi.readLine().substr(3));
+				field.options.push(bi.readLine().substr(3));
+				field.options.push(bi.readLine().substr(3));
 				fields.push(field);
-				//trace("Added field.");
 			}
 		} catch (e:Eof) { }
-		
-		//trace("\n" + fields[0].text);
 		
 		bi.close();
 		
@@ -112,4 +206,12 @@ class Game extends Sprite
 		return null;
 		
 	}
+}
+
+enum FieldState {
+	TEXT;
+	CORRECTIONS;
+	NO_ERROR_RESPONSE;
+	ERROR_CORRECT_RESPONSE;
+	ERROR_INCORRECT_RESPONSE;
 }

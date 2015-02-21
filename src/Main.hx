@@ -34,7 +34,7 @@ class Main extends Sprite {
 	public var soundReq:URLRequest = new URLRequest("assets/Snaketris.mp3");
 	public var soundChannel:SoundChannel;
 
-	public function new(rootSprite:Sprite, highScore:Int) {
+	public function new(rootSprite:Sprite) {
 		this.rootSprite = rootSprite;
 		super();
 	}
