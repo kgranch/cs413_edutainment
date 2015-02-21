@@ -25,6 +25,8 @@ class Root extends Sprite {
 
         assets = new AssetManager();
         assets.enqueue("assets/Grandpa.png");
+		assets.enqueue("assets/font/5x7.png");
+		assets.enqueue("assets/font/5x7.fnt");
 		
 		// Levels
 		assets.enqueue("assets/levels/chapter1.txt");

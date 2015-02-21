@@ -1,6 +1,8 @@
 import starling.display.Sprite;
 import starling.core.Starling;
 
+import starling.text.TextField;
+
 import haxe.io.Bytes;
 import haxe.io.BytesInput;
 import haxe.io.Eof;
@@ -21,6 +23,8 @@ class Game extends Sprite
 	
 	var animTimer:Timer;
 	
+	var textBox:TextField = new TextField(512, 100, "This is a test", "5x7");
+	
 	public function new(root:Sprite) {
 		super();
 		this.rootSprite = root;
@@ -32,6 +36,18 @@ class Game extends Sprite
 		
 		rootSprite.addChild(this);
 		
+		var stage = Starling.current.stage;
+		var stageWidth:Float = Starling.current.stage.stageWidth;
+		var stageHeight:Float = Starling.current.stage.stageHeight;
+		
+		textBox.x = 30;
+		textBox.y = stageHeight - 70;
+		textBox.fontSize = 14;
+		textBox.color = 0xffffff;
+		textBox.hAlign = "left";
+		textBox.vAlign = "top";
+		this.addChild(textBox);
+		
 		currentField = popTextObject();
 		
 		animTimer = new Timer(10);
@@ -41,7 +57,8 @@ class Game extends Sprite
 	
 	function animationTick() {
 		
-		trace("\n" + currentField.text.substr(0, renderProgress));
+		//trace("\n" + currentField.text.substr(0, renderProgress));
+		textBox.text = currentField.text.substr(0, renderProgress);
 		
 		if (renderProgress < currentField.text.length)
 			renderProgress++;
@@ -65,11 +82,11 @@ class Game extends Sprite
 				field.options.push(bi.readLine());
 				field.options.push(bi.readLine());
 				fields.push(field);
-				trace("Added field.");
+				//trace("Added field.");
 			}
 		} catch (e:Eof) { }
 		
-		trace("\n" + fields[0].text);
+		//trace("\n" + fields[0].text);
 		
 		bi.close();
 		
