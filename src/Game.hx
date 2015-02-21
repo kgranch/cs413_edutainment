@@ -27,7 +27,7 @@ class Game extends Sprite
 	
 	var animTimer:Timer;
 	
-	var textBox:TextField = new TextField(512, 100, "This is a test", "5x7");
+	var textBox:TextField = new TextField(512, 100, "", "5x7");
 	
 	public function new(root:Sprite) {
 		super();
@@ -69,8 +69,10 @@ class Game extends Sprite
 		if (event.keyCode == Keyboard.SPACE) {
 			if(animating)
 				skipTextAnim();
-			else if(fieldState == FieldState.TEXT)
+			else if (fieldState != FieldState.CORRECTIONS) {
+				fieldState = FieldState.TEXT;
 				advanceField();
+			}
 		}
 		else if (event.keyCode == Keyboard.C) {
 			if (fieldState == FieldState.TEXT) {
@@ -86,12 +88,14 @@ class Game extends Sprite
 				case Keyboard.NUMBER_3: n = 3;
 				case Keyboard.NUMBER_4: n = 4;
 			}
-			if(n >= 0) {
-				if (currentField.checkAnswer(n))
-					trace("Correct!");
+			if (n >= 0) {
+				if (currentField.correct)
+					fieldState = FieldState.NO_ERROR_RESPONSE;
+				else if (currentField.checkAnswer(n))
+					fieldState = FieldState.ERROR_CORRECT_RESPONSE;
 				else
-					trace("Incorrect!");
-				advanceField();
+					fieldState = FieldState.ERROR_INCORRECT_RESPONSE;
+				startTextAnim();
 			}
 		}
 	}
@@ -125,15 +129,16 @@ class Game extends Sprite
 	}
 	
 	function skipTextAnim() {
-		textBox.text = getTruncatedText();
+		textBox.text = getText();
 		animating = false;
 		animTimer.stop();
 	}
 	
 	function animationTick() {
-		textBox.text = getTruncatedText(renderProgress);
+		var fullText = getText();
+		textBox.text = fullText.substr(0, renderProgress);
 		
-		if (renderProgress < currentField.text.length)
+		if (renderProgress < fullText.length)
 			renderProgress++;
 		else {
 			animTimer.stop();
@@ -141,15 +146,16 @@ class Game extends Sprite
 		}
 	}
 	
-	function getTruncatedText(?len:Int):String {
+	function getText():String {
 		var text = "";
-		if (fieldState == FieldState.TEXT)
-			text = currentField.text;
-		else if (fieldState == FieldState.CORRECTIONS)
-			text = currentField.getOptionText();
+		switch(fieldState) {
+			case FieldState.TEXT: 						text = currentField.text;
+			case FieldState.CORRECTIONS: 				text = currentField.getOptionText();
+			case FieldState.ERROR_CORRECT_RESPONSE:		text = "Correct!";
+			case FieldState.ERROR_INCORRECT_RESPONSE:	text = "Incorrect!";
+			case FieldState.NO_ERROR_RESPONSE:			text = "No Errors Here!";
+		}
 		
-		if (len != null)
-			text = text.substr(0, len);
 		return text;
 	}
 	
@@ -171,11 +177,8 @@ class Game extends Sprite
 				field.options.push(bi.readLine().substr(3));
 				field.options.push(bi.readLine().substr(3));
 				fields.push(field);
-				//trace("Added field.");
 			}
 		} catch (e:Eof) { }
-		
-		//trace("\n" + fields[0].text);
 		
 		bi.close();
 		

@@ -21,8 +21,6 @@ class TextObject extends Sprite
 			for (i in 0...options.length)
 				order.push(i);
 			
-			trace(order);
-			
 			for (i in 0...order.length) {
 				var j = Math.floor(order.length * Math.random());
 				var a = order[i];
@@ -30,8 +28,6 @@ class TextObject extends Sprite
 				order[i] = b;
 				order[j] = a;
 			}
-			
-			trace(order);
 		}
 		
 		return order;
