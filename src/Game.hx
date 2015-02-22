@@ -40,7 +40,8 @@ class Game extends Sprite
 	var animTimer:Timer;
 	
 	var textBox:TextField = new TextField(512, 50, "", "5x7");
-	var selectorFilter:SelectorFilter;
+	var angryFilter:SelectorFilter;
+	var normalFilter:SelectorFilter;
 
 	var bg:Image;
 	var grandpa:Grandpa;
@@ -89,9 +90,9 @@ class Game extends Sprite
 		textBox.hAlign = "left";
 		textBox.vAlign = "top";
 		
-		//textBox.filter = BlurFilter.createDropShadow(2.0, 0.785, 0x0, 0.75, 0.25, 1.0);
-		selectorFilter = new SelectorFilter(0.25, 125.0, 0.0);
-		textBox.filter = selectorFilter;
+		angryFilter = new SelectorFilter(0.25, 125.0, 0.0);
+		normalFilter = new SelectorFilter(0.0, 0.0, 0.0);
+		textBox.filter = normalFilter;
 		
 		this.addChild(textBox);
 		
@@ -151,8 +152,11 @@ class Game extends Sprite
 	}
 	
 	function onEnterFrame(event:EnterFrameEvent) {
-		selectorFilter.clk += waveRate * event.passedTime;
-		textBox.filter = selectorFilter;
+		angryFilter.clk += waveRate * event.passedTime;
+		if (fieldState == FieldState.NO_ERROR_RESPONSE || fieldState == FieldState.ERROR_INCORRECT_RESPONSE)
+			textBox.filter = angryFilter;
+		else
+			textBox.filter = normalFilter;
 	}
 	
 	function advanceField() {
