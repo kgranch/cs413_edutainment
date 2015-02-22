@@ -3,6 +3,10 @@ import starling.display.Image;
 import starling.core.Starling;
 import starling.text.TextField;
 import starling.events.KeyboardEvent;
+import starling.events.EnterFrameEvent;
+import starling.events.Event;
+import starling.filters.BlurFilter;
+import starling.filters.SelectorFilter;
 
 import flash.media.SoundTransform;
 import flash.media.SoundChannel;
@@ -30,10 +34,13 @@ class Game extends Sprite
 	var renderProgress = 0; // How far in rendering the text animation we are (in characters)
 	var animating = false;
 	var soundCounter = 0;
+	var menuSelection = 0;
+	var waveRate = 0.125;
 	
 	var animTimer:Timer;
 	
-	var textBox:TextField = new TextField(512, 100, "", "5x7");
+	var textBox:TextField = new TextField(512, 50, "", "5x7");
+	var selectorFilter:SelectorFilter;
 
 	var bg:Image;
 	var grandpa:Grandpa;
@@ -55,6 +62,7 @@ class Game extends Sprite
 		var stageHeight:Float = Starling.current.stage.stageHeight;
 		
 		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 
 		bg = new Image(Root.assets.getTexture("Background"));
 		grandpa = new Grandpa();
@@ -80,6 +88,11 @@ class Game extends Sprite
 		textBox.color = 0xffffff;
 		textBox.hAlign = "left";
 		textBox.vAlign = "top";
+		
+		//textBox.filter = BlurFilter.createDropShadow(2.0, 0.785, 0x0, 0.75, 0.25, 1.0);
+		selectorFilter = new SelectorFilter(0.25, 125.0, 0.0);
+		textBox.filter = selectorFilter;
+		
 		this.addChild(textBox);
 		
 		currentField = popTextObject();
@@ -92,6 +105,7 @@ class Game extends Sprite
 	
 	public function cleanup() {
 		Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+		removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 		animTimer.stop();
 	}
 	
@@ -103,32 +117,42 @@ class Game extends Sprite
 				fieldState = FieldState.TEXT;
 				advanceField();
 			}
-		}
-		else if (event.keyCode == Keyboard.C) {
-			if (fieldState == FieldState.TEXT) {
-				if(currentField.correct)
-					fieldState = FieldState.NO_ERROR_RESPONSE;
-				else
-					fieldState = FieldState.CORRECTIONS;
-				startTextAnim();
-			}
-		}
-		else if (fieldState == FieldState.CORRECTIONS) {
-			var n = -1;
-			switch(event.keyCode) {
-				case Keyboard.NUMBER_1: n = 1;
-				case Keyboard.NUMBER_2: n = 2;
-				case Keyboard.NUMBER_3: n = 3;
-				case Keyboard.NUMBER_4: n = 4;
-			}
-			if (n >= 0) {
-				if (currentField.checkAnswer(n))
+			else {
+				if (currentField.checkAnswer(menuSelection + 1))
 					fieldState = FieldState.ERROR_CORRECT_RESPONSE;
 				else
 					fieldState = FieldState.ERROR_INCORRECT_RESPONSE;
 				startTextAnim();
 			}
 		}
+		else if (event.keyCode == Keyboard.C) {
+			if (fieldState == FieldState.TEXT) {
+				if(currentField.correct)
+					fieldState = FieldState.NO_ERROR_RESPONSE;
+				else {
+					fieldState = FieldState.CORRECTIONS;
+					menuSelection = 0;
+				}
+				startTextAnim();
+			}
+		}
+		else if (fieldState == FieldState.CORRECTIONS) {
+			switch(event.keyCode) {
+				case Keyboard.UP:
+					menuSelection--;
+					if (menuSelection < 0)
+						menuSelection = 3;
+				case Keyboard.DOWN:
+					menuSelection++;
+					if (menuSelection > 3)
+						menuSelection = 0;
+			}
+		}
+	}
+	
+	function onEnterFrame(event:EnterFrameEvent) {
+		selectorFilter.clk += waveRate * event.passedTime;
+		textBox.filter = selectorFilter;
 	}
 	
 	function advanceField() {
@@ -176,7 +200,7 @@ class Game extends Sprite
 			var sc:SoundChannel = Root.assets.playSound("text_sound_2");
 			sc.soundTransform = st;
 		}
-		soundCounter += 1;
+		soundCounter ++;
 		if(soundCounter == 2)
 			soundCounter = 0;
 
