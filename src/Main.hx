@@ -21,13 +21,14 @@ class Main extends Sprite {
 	public var rootSprite:Sprite;
 	private var selection:Int;
 	private var buttons:Array<TextField>;
-	//private var title:Image;
+	private var title:Image;
 	//private var snakeLogo:Image;
 	private var rotateSpeed = 0.3;
 	private var transitionSpeed = 0.5;
 	private var tween:Tween;
 	public var bgcolor = 255;
 	public var bg:Image;
+	public var gametitle:TextField;
 	public var center = new Vector3D(Starling.current.stage.stageWidth / 2.5, Starling.current.stage.stageHeight / 2.5);
 
 	public var sound:Sound = new Sound();
