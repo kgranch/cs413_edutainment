@@ -100,7 +100,10 @@ class Game extends Sprite
 		}
 		else if (event.keyCode == Keyboard.C) {
 			if (fieldState == FieldState.TEXT) {
-				fieldState = FieldState.CORRECTIONS;
+				if(currentField.correct)
+					fieldState = FieldState.NO_ERROR_RESPONSE;
+				else
+					fieldState = FieldState.CORRECTIONS;
 				startTextAnim();
 			}
 		}
@@ -113,9 +116,7 @@ class Game extends Sprite
 				case Keyboard.NUMBER_4: n = 4;
 			}
 			if (n >= 0) {
-				if (currentField.correct)
-					fieldState = FieldState.NO_ERROR_RESPONSE;
-				else if (currentField.checkAnswer(n))
+				if (currentField.checkAnswer(n))
 					fieldState = FieldState.ERROR_CORRECT_RESPONSE;
 				else
 					fieldState = FieldState.ERROR_INCORRECT_RESPONSE;
@@ -175,7 +176,7 @@ class Game extends Sprite
 		switch(fieldState) {
 			case FieldState.TEXT: 						text = currentField.text;
 			case FieldState.CORRECTIONS: 				text = currentField.getOptionText();
-			case FieldState.ERROR_CORRECT_RESPONSE:		text = "Correct!";
+			case FieldState.ERROR_CORRECT_RESPONSE:		text = currentField.revised;
 			case FieldState.ERROR_INCORRECT_RESPONSE:	text = "Incorrect!";
 			case FieldState.NO_ERROR_RESPONSE:			text = "No Errors Here!";
 		}
@@ -195,11 +196,14 @@ class Game extends Sprite
 				var field = new TextObject();
 				field.correct = bi.readLine() == "C";
 				field.text = bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine();
-				field.options = new Array<String>();
-				field.options.push(bi.readLine().substr(3));
-				field.options.push(bi.readLine().substr(3));
-				field.options.push(bi.readLine().substr(3));
-				field.options.push(bi.readLine().substr(3));
+				if(!field.correct) {
+					field.options = new Array<String>();
+					field.options.push(bi.readLine().substr(3));
+					field.options.push(bi.readLine().substr(3));
+					field.options.push(bi.readLine().substr(3));
+					field.options.push(bi.readLine().substr(3));
+					field.revised = bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine();
+				}
 				fields.push(field);
 			}
 		} catch (e:Eof) { }
