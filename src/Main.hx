@@ -20,9 +20,9 @@ class Main extends Sprite {
 	
 	public var rootSprite:Sprite;
 	private var selection:Int;
-	private var buttons:Array<Image>;
-	private var title:Image;
-	private var snakeLogo:Image;
+	private var buttons:Array<TextField>;
+	//private var title:Image;
+	//private var snakeLogo:Image;
 	private var rotateSpeed = 0.3;
 	private var transitionSpeed = 0.5;
 	private var tween:Tween;
@@ -47,16 +47,27 @@ class Main extends Sprite {
 		this.y = center.y;
 		this.scaleX = 8;
 		this.scaleY = 8;
+		
+		gametitle = new TextField(350, 50, "Grandpa's Tall Tales", "5x7");
+		gametitle.text = "Grandpa's Tall Tales";
+		gametitle.fontSize = 45;
+		gametitle.color = Color.WHITE;
+		gametitle.x = center.x - 125;
+		gametitle.y = 50;
+		this.addChild(gametitle);
+		rootSprite.addChild(this);
 
-		/*
-		buttons = [new Image(Root.assets.getTexture("NewGame")), new Image(Root.assets.getTexture("Help")), new Image(Root.assets.getTexture("Credits"))];
+		/** Compilation issues with this
+		buttons = [new TextField(350, 50, "New Game, "5x7"), new TextField(350, 50, "Help", "5x7"), new TextField(350, 50, "Credits", "5x7")];
 		for (i in 0...buttons.length) {
 			var button = buttons[i];
-			button.x = center.x - 200;
-			button.y = 300  + (i * 150);
+			button.fontSize = 18;
+			button.color = Color.WHITE;
+			button.x = center.x - 125;
+			button.y = 75  + (i * 50);
 			this.addChild(button);
 		}
-		*/
+		**/
 		
 		//Enlarge the first highlighted option by default
 		//buttons[0].scaleX = 1.5;
