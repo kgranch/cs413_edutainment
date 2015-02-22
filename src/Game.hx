@@ -90,8 +90,8 @@ class Game extends Sprite
 		textBox.hAlign = "left";
 		textBox.vAlign = "top";
 		
-		angryFilter = new SelectorFilter(0.25, 125.0, 0.0);
-		normalFilter = new SelectorFilter(0.0, 0.0, 0.0);
+		angryFilter = new SelectorFilter(0.25, 125.0, 10.25, 0.0);
+		normalFilter = new SelectorFilter(0.25, 125.0, 10.25, 0.0);
 		textBox.filter = normalFilter;
 		
 		this.addChild(textBox);
@@ -119,6 +119,7 @@ class Game extends Sprite
 				advanceField();
 			}
 			else {
+				normalFilter.selected = false;
 				if (currentField.checkAnswer(menuSelection + 1))
 					fieldState = FieldState.ERROR_CORRECT_RESPONSE;
 				else
@@ -133,6 +134,8 @@ class Game extends Sprite
 				else {
 					fieldState = FieldState.CORRECTIONS;
 					menuSelection = 0;
+					normalFilter.selected = true;
+					normalFilter.selectedLine = 0;
 				}
 				startTextAnim();
 			}
@@ -148,6 +151,7 @@ class Game extends Sprite
 					if (menuSelection > 3)
 						menuSelection = 0;
 			}
+			normalFilter.selectedLine = menuSelection;
 		}
 	}
 	
