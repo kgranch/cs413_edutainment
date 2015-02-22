@@ -44,6 +44,7 @@ class Game extends Sprite
 	var normalFilter:SelectorFilter;
 
 	var bg:Image;
+	var textBubble:Image;
 	var grandpa:Grandpa;
 	var boy:Image;
 	var fire: Image;
@@ -69,6 +70,7 @@ class Game extends Sprite
 		grandpa = new Grandpa();
 		boy = new Image(Root.assets.getTexture("Boy1"));
 		fire = new Image(Root.assets.getTexture("Fire1"));
+		textBubble = new Image(Root.assets.getTexture("TextBubble"));
 
 		grandpa.x = 270;
 		grandpa.y = 190;
@@ -76,10 +78,13 @@ class Game extends Sprite
 		boy.y = 250;
 		fire.x = 435;
 		fire.y = 255;
+		textBubble.x = 13;
+		textBubble.y = stageHeight - 80;
 		this.addChild(bg);
 		this.addChild(grandpa);
 		this.addChild(boy);
 		this.addChild(fire);
+		this.addChild(textBubble);
 
 		rootSprite.addChild(this);
 		
@@ -91,7 +96,7 @@ class Game extends Sprite
 		textBox.vAlign = "top";
 		
 		angryFilter = new SelectorFilter(0.25, 125.0, 10.25, 0.0);
-		normalFilter = new SelectorFilter(0.25, 125.0, 10.25, 0.0);
+		normalFilter = new SelectorFilter(0.0, 0.0, 10.25, 0.0);
 		textBox.filter = normalFilter;
 		
 		this.addChild(textBox);
