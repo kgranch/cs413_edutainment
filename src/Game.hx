@@ -1,14 +1,8 @@
 import starling.display.Sprite;
 import starling.display.Image;
-import starling.animation.Juggler;
-import starling.events.Event;
-import starling.display.MovieClip;
-import starling.textures.Texture;
-import starling.textures.TextureAtlas;
 import starling.core.Starling;
 import starling.text.TextField;
 import starling.events.KeyboardEvent;
-
 import haxe.io.Bytes;
 import haxe.io.BytesInput;
 import haxe.io.Eof;
@@ -34,9 +28,9 @@ class Game extends Sprite
 	var animTimer:Timer;
 	
 	var textBox:TextField = new TextField(512, 100, "", "5x7");
-	
+
 	var bg:Image;
-	var grandpa:Image;
+	var grandpa:Grandpa;
 	var boy:Image;
 	var fire: Image;
 
@@ -57,7 +51,7 @@ class Game extends Sprite
 		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 
 		bg = new Image(Root.assets.getTexture("Background"));
-		grandpa = new Image(Root.assets.getTexture("Grandpa1"));
+		grandpa = new Grandpa();
 		boy = new Image(Root.assets.getTexture("Boy1"));
 		fire = new Image(Root.assets.getTexture("Fire1"));
 
