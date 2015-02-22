@@ -162,12 +162,14 @@ class Game extends Sprite
 	function animationTick() {
 		var fullText = getText();
 		textBox.text = fullText.substr(0, renderProgress);
-		
+
 		if (renderProgress < fullText.length)
 			renderProgress++;
 		else {
 			animTimer.stop();
 			animating = false;
+		
+			Root.assets.playSound("text_sound_1");
 		}
 	}
 	
