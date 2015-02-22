@@ -5,12 +5,20 @@ import starling.core.Starling;
 import starling.animation.Transitions;
 import starling.display.Stage;
 import starling.events.EnterFrameEvent;
-
+import starling.textures.Texture;
+import starling.textures.TextureAtlas;
+/**
+@:bitmap("assets/Sprites.png")
+class GrandpaBitmap extends flash.display.BitmapData{}
+@:file("assets/Sprites.xml")
+class GrandpaXml extends flash.utils.ByteArray{}
+**/
 class Root extends Sprite {
 
     public static var assets:AssetManager;
     public var rootSprite:Sprite;
 	public var highScore:Int;
+    private var gameTextureAtlas:TextureAtlas;
 
 	public static function init() {
 		
@@ -20,7 +28,17 @@ class Root extends Sprite {
         rootSprite = this;
         super();
     }
-	
+/**
+    public function getAtlas(){
+        if (gameTextureAtlas == null){
+            var texture:Texture = getTexture("GrandpaBitmap");
+            var xml:Xml = Xml(new GrandpaXml());
+            var bitmapData = Assets.getBitmapData("Sprites.png");
+            gameTextureAtlas = new TextureAtlas(texture, xml);
+        }
+        return gameTextureAtlas;
+    }
+**/
     public function start(startup:Startup) {
 
         assets = new AssetManager();
