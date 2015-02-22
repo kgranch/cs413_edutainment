@@ -3,6 +3,11 @@ import starling.display.Image;
 import starling.core.Starling;
 import starling.text.TextField;
 import starling.events.KeyboardEvent;
+
+import flash.media.SoundTransform;
+import flash.media.SoundChannel;
+import flash.media.Sound;
+
 import haxe.io.Bytes;
 import haxe.io.BytesInput;
 import haxe.io.Eof;
@@ -24,6 +29,7 @@ class Game extends Sprite
 	var fieldState = FieldState.TEXT;
 	var renderProgress = 0; // How far in rendering the text animation we are (in characters)
 	var animating = false;
+	var soundCounter = 0;
 	
 	var animTimer:Timer;
 	
@@ -149,7 +155,7 @@ class Game extends Sprite
 		animating = true;
 		if(animTimer != null)
 			animTimer.stop();
-		animTimer = new Timer(10);
+		animTimer = new Timer(25);
 		animTimer.run = animationTick;
 	}
 	
@@ -162,14 +168,23 @@ class Game extends Sprite
 	function animationTick() {
 		var fullText = getText();
 		textBox.text = fullText.substr(0, renderProgress);
+		
+		if(textBox.text.substr(-2, 1) == " ") {
+			soundCounter = 0;
+		} else if(soundCounter == 0) {
+			var st:SoundTransform = new SoundTransform(0.25, 0);
+			var sc:SoundChannel = Root.assets.playSound("text_sound_2");
+			sc.soundTransform = st;
+		}
+		soundCounter += 1;
+		if(soundCounter == 2)
+			soundCounter = 0;
 
 		if (renderProgress < fullText.length)
 			renderProgress++;
 		else {
 			animTimer.stop();
 			animating = false;
-		
-			Root.assets.playSound("text_sound_1");
 		}
 	}
 	
