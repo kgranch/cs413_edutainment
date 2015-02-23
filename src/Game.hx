@@ -52,8 +52,8 @@ class Game extends Sprite
 	var bg:Image;
 	var textBubble:Image;
 	var grandpa:Grandpa;
-	var boy:Image;
-	var fire: Image;
+	var boy:Boy;
+	var fire: Fire;
 	var strikeImages:Array<Image>;
 	
 	var transitionSpeed = 0.5;
@@ -91,8 +91,8 @@ class Game extends Sprite
 
 		bg = new Image(Root.assets.getTexture("Background"));
 		grandpa = new Grandpa();
-		boy = new Image(Root.assets.getTexture("Boy1"));
-		fire = new Image(Root.assets.getTexture("Fire1"));
+		boy = new Boy();
+		fire = new Fire();
 		textBubble = new Image(Root.assets.getTexture("TextBubble"));
 
 		grandpa.x = 270;
@@ -100,7 +100,7 @@ class Game extends Sprite
 		boy.x = 190;
 		boy.y = 250;
 		fire.x = 435;
-		fire.y = 255;
+		fire.y = 235;
 		textBubble.x = 13;
 		textBubble.y = stageHeight - 80;
 		this.addChild(bg);

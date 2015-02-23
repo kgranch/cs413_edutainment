@@ -6,10 +6,10 @@ import starling.events.Event;
 import starling.textures.Texture;
 import starling.textures.TextureAtlas;
 
-class Grandpa extends Sprite
+class Boy extends Sprite
 {
 
-    private var grandpaArt:MovieClip;
+    private var boyArt:MovieClip;
 
     public function new()
     {
@@ -21,17 +21,14 @@ class Grandpa extends Sprite
     {
 
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-        snore();
+        scratch();
     }
 
-    private function snore()
+    private function scratch()
     {
-        grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaBubble_"), 5);
-        grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
-        grandpaArt.y = Math.ceil(-grandpaArt.height/2 + 50);
-        grandpaArt.advanceTime(-5);
-        starling.core.Starling.juggler.add(grandpaArt);
-        this.addChild(grandpaArt);
+        boyArt = new MovieClip(Root.assets.getTextures("Boy_"), 6);
+        starling.core.Starling.juggler.add(boyArt);
+        this.addChild(boyArt);
 
     }
 }
