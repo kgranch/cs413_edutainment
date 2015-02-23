@@ -97,6 +97,7 @@ class Game extends Sprite
 		fire = new Fire();
 		textBubble = new Image(Root.assets.getTexture("TextBubble"));
 
+		bg.smoothing = "none";
 		grandpa.x = 270;
 		grandpa.y = 190;
 		boy.x = 190;
