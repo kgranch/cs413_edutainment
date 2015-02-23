@@ -21,16 +21,17 @@ class Grandpa extends Sprite
     {
 
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-        createGrandpaArt();
+        snore();
     }
 
-    private function createGrandpaArt()
-    {/**
-        grandpaArt = new MovieClip(Assets.getAtlas().getTextures("Grandpa"), 20);
-        grandpaArt.x = Math.ceil(-grandpaArt.width/2);
-        grandpaArt.y = Math.ceil(-grandpaArt.height/2);
+    private function snore()
+    {
+        grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaBubble"), 5);
+        grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
+        grandpaArt.y = Math.ceil(-grandpaArt.height/2 + 50);
+        grandpaArt.advanceTime(-5);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
-        **/
+
     }
 }
