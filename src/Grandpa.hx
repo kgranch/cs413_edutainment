@@ -26,7 +26,7 @@ class Grandpa extends Sprite
 
     private function snore()
     {
-        grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaBubble"), 5);
+        grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaBubble_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil(-grandpaArt.height/2 + 50);
         grandpaArt.advanceTime(-5);

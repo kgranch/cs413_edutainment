@@ -3,7 +3,8 @@ import starling.animation.Juggler;
 import starling.core.Starling;
 import starling.display.Sprite;
 import starling.events.Event;
-
+import starling.textures.Texture;
+import starling.textures.TextureAtlas;
 
 class Fire extends Sprite
 {
