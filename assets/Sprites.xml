@@ -17,18 +17,18 @@
     <SubTexture name="Fire_6" x="343" y="2" width="35" height="50"/>
     <SubTexture name="Fire_7" x="380" y="2" width="35" height="50"/>
     <SubTexture name="Fire_8" x="417" y="2" width="35" height="50"/>
-    <SubTexture name="GrandpaBubble_1" x="2" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_01" x="2" y="59" width="100" height="120"/>
     <SubTexture name="GrandpaBubble_10" x="104" y="59" width="100" height="120"/>
     <SubTexture name="GrandpaBubble_11" x="206" y="59" width="100" height="120"/>
     <SubTexture name="GrandpaBubble_12" x="2" y="59" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_2" x="206" y="59" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_3" x="104" y="59" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_4" x="308" y="59" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_5" x="410" y="59" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_6" x="2" y="181" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_7" x="2" y="181" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_8" x="410" y="59" width="100" height="120"/>
-    <SubTexture name="GrandpaBubble_9" x="308" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_02" x="206" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_03" x="104" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_04" x="308" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_05" x="410" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_06" x="2" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_07" x="2" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_08" x="410" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_09" x="308" y="59" width="100" height="120"/>
     <SubTexture name="GrandpaFart_1" x="104" y="181" width="100" height="120"/>
     <SubTexture name="GrandpaFart_2" x="206" y="181" width="100" height="120"/>
     <SubTexture name="GrandpaFart_3" x="308" y="181" width="100" height="120"/>
