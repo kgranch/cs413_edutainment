@@ -26,6 +26,7 @@ class GameOver extends Sprite {
 	private var selection:Int;
 	private var buttons:Array<TextField>;
 	private var title:Image;
+	private var bg:Image;
 	private var transitionInSpeed = 2.0;
 	private var transitionOutSpeed = 1.0;
 	private var tween:Tween;
@@ -83,8 +84,9 @@ class GameOver extends Sprite {
 		
 		this.x = 0;
 		this.y = stageHeight + 20;
-		
+		bg = new Image(Root.assets.getTexture("Classroom"));
 		paper = new Image(Root.assets.getTexture("GameOver"));
+		this.addChild(bg);
 		this.addChild(paper);
 		
 		var date = Date.now();
