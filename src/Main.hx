@@ -58,21 +58,18 @@ class Main extends Sprite {
 		this.addChild(gametitle);
 		rootSprite.addChild(this);
 
-		/** Compilation issues with this
-		buttons = [new TextField(350, 50, "New Game, "5x7"), new TextField(350, 50, "Help", "5x7"), new TextField(350, 50, "Credits", "5x7")];
+		buttons = [new TextField(150, 50, "New Game", "5x7"), new TextField(150, 50, "Help", "5x7"), new TextField(150, 50, "Credits", "5x7")];
 		for (i in 0...buttons.length) {
 			var button = buttons[i];
-			button.fontSize = 18;
+			button.fontSize = 24;
 			button.color = Color.WHITE;
-			button.x = center.x - 125;
-			button.y = 75  + (i * 50);
+			button.x = center.x - 25;
+			button.y = 110 + (i * 50);
 			this.addChild(button);
 		}
-		**/
 		
 		//Enlarge the first highlighted option by default
-		//buttons[0].scaleX = 1.5;
-		//buttons[0].scaleY = 1.5;
+		buttons[0].fontSize = 40;
 		
 		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		
@@ -98,43 +95,36 @@ class Main extends Sprite {
 		
 			if (selection == 0) {
 				// NewGame
-				/*var game = new Game(rootSprite, highScore);
-				game.bgcolor = this.bgcolor;
-				game.startGame(rootSprite);
+				/*var game = new Game(rootSprite);
+				 game.start();
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-				Root.assets.removeSound("Snaketris");
 				transitionOut(function() {
-					this.removeFromParent();
-					this.dispose();
+				this.removeFromParent();
+				this.dispose();
 				});*/
 			}
 			else if (selection == 1) {
 				// Help
 				/*
-				var help = new Help(rootSprite, highScore);
-				help.bgcolor = this.bgcolor;
-				help.start();
+				var help = new Help(rootSprite);
+				 game.start();
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-				Root.assets.removeSound("Snaketris");
-				helpTrans(function() {
-					this.removeFromParent();
-					this.dispose();
-				}); */
+				transitionOut(function() {
+				this.removeFromParent();
+				this.dispose();
+				});*/
 
 			}
 			else if (selection == 2) {
 				// Credits
 				/*
-				var credits = new Credits(rootSprite, highScore);
-				credits.bgcolor = this.bgcolor;
-				credits.start();
+				var credits = new Credits(rootSprite);
+				 game.start();
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-				Root.assets.removeSound("Snaketris");
-				creditTrans(function() {
-					this.removeFromParent();
-					this.dispose();
-
-				}); */
+				transitionOut(function() {
+				this.removeFromParent();
+				this.dispose();
+				});*/
 
 			}
 		}
@@ -144,35 +134,32 @@ class Main extends Sprite {
 			if (event.keyCode == Keyboard.UP) {
 				/*
 				Root.assets.playSound("SelectOption");
+				*/
 				
 				tween = new Tween(this.buttons[selection], rotateSpeed, Transitions.EASE_IN_OUT);
-				tween.animate("scaleX", 1.0);
-				tween.animate("scaleY", 1.0);
+				tween.animate("fontSize", 24);
 				Starling.juggler.add(tween);
 
 				selection = arithMod(--selection, buttons.length);
 
 				tween = new Tween(this.buttons[selection], rotateSpeed, Transitions.EASE_IN_OUT);
-				tween.animate("scaleX", 1.5);
-				tween.animate("scaleY", 1.5);
+				tween.animate("fontSize", 40);
 				Starling.juggler.add(tween);
-				*/
 			}
 			else if (event.keyCode == Keyboard.DOWN) {
 				/*
 				Root.assets.playSound("SelectOption");
-
+				*/
+				
 				tween = new Tween(this.buttons[selection], rotateSpeed, Transitions.EASE_IN_OUT);
-				tween.animate("scaleX", 1.0);
-				tween.animate("scaleY", 1.0);
+				tween.animate("fontSize", 24);
 				Starling.juggler.add(tween);
 
 				selection = arithMod(++selection, buttons.length);
-				
+
 				tween = new Tween(this.buttons[selection], rotateSpeed, Transitions.EASE_IN_OUT);
-				tween.animate("scaleX", 1.5);
-				tween.animate("scaleY", 1.5);
-				Starling.juggler.add(tween); */
+				tween.animate("fontSize", 40);
+				Starling.juggler.add(tween);
 			}
 		}
 	}
