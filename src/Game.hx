@@ -7,6 +7,8 @@ import starling.events.EnterFrameEvent;
 import starling.events.Event;
 import starling.filters.BlurFilter;
 import starling.filters.SelectorFilter;
+import starling.animation.Transitions;
+import starling.animation.Tween;
 
 import flash.media.SoundTransform;
 import flash.media.SoundChannel;
@@ -51,6 +53,8 @@ class Game extends Sprite
 	var boy:Image;
 	var fire: Image;
 	var strikeImages:Array<Image>;
+	
+	var transitionSpeed = 0.5;
 	
 	public function new(root:Sprite) {
 		super();
@@ -195,11 +199,13 @@ class Game extends Sprite
 		if (strikes == 4) {
 			
 			// Exit
-			var menu = new Main(rootSprite);
-			menu.start();
+			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, errorsSkipped, strikes);
+			gameover.start();
 			cleanup();
-			this.removeFromParent();
-			this.dispose();
+			transitionOut(function() {
+				this.removeFromParent();
+				this.dispose();
+			});
 		}
 	}
 	
@@ -209,13 +215,13 @@ class Game extends Sprite
 		{
 			
 			// Exit
-			var menu = new Main(rootSprite);
-			menu.start();
+			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, errorsSkipped, strikes);
+			gameover.start();
 			cleanup();
-			//transitionOut(function() {
+			transitionOut(function() {
 				this.removeFromParent();
 				this.dispose();
-			//});
+			});
 		}
 		else
 		{
@@ -310,6 +316,17 @@ class Game extends Sprite
 			return this.fields[fieldProgress++];
 		return null;
 		
+	}
+	
+	
+
+	private function transitionOut(?callBack:Void->Void) {
+
+		var t = new Tween(this, transitionSpeed, Transitions.EASE_IN_OUT);
+		t.animate("alpha", 0);
+		t.onComplete = callBack;
+		Starling.juggler.add(t);
+
 	}
 }
 
