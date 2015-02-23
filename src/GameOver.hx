@@ -45,6 +45,7 @@ class GameOver extends Sprite {
 	var paperHeading:TextField;
 	var paperTitle:TextField;
 	var paperBody:TextField;
+	var speakerHead:Image;
 	
 	var fieldProgress = 0; // Determines what textobject should be popped next
 	var fields:Array<TextObject>; // All of the textobject fields
@@ -157,6 +158,11 @@ class GameOver extends Sprite {
 		textBubble.x = 13;
 		textBubble.y = stageHeight - 80;
 		this.addChild(textBubble);
+		
+		speakerHead = new Image(Root.assets.getTexture("TeacherHead"));
+		speakerHead.x = 418;
+		speakerHead.y = stageHeight - 144;
+		this.addChild(speakerHead);
 		
 		fields = new Array<TextObject>();
 		

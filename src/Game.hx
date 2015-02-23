@@ -35,6 +35,7 @@ class Game extends Sprite
 	var introFields:Array<TextObject>; // All of the intro fields
 	var outroFields:Array<TextObject>; // All of the outro fields
 	
+	var currentSpeaker:Speakers;
 	var currentField:TextObject;
 	var fieldState = FieldState.INTRO;
 	var renderProgress = 0; // How far in rendering the text animation we are (in characters)
@@ -51,6 +52,7 @@ class Game extends Sprite
 
 	var bg:Image;
 	var textBubble:Image;
+	var speakerHead:Image;
 	var grandpa:Grandpa;
 	var boy:Boy;
 	var fire: Fire;
@@ -64,7 +66,7 @@ class Game extends Sprite
 		this.levelFile = "chapter1";
 		
 		introFields = [
-			new TextObject("Hey Grandpa, can you tell me a story about the Great Depression?\n I have a paper to write!", Speakers.TIMMY),
+			new TextObject("Hey Grandpa, can you tell me a story about the Great Depression? \nI have a paper to write!", Speakers.TIMMY),
 			new TextObject("Sure, little Timmy, I'd love to!", Speakers.GRANDPA),
 			new TextObject("Let's see...                    \nWhere to begin...?                          \nAH! I know!", Speakers.GRANDPA)
 		];
@@ -127,6 +129,11 @@ class Game extends Sprite
 		textBox.hAlign = "left";
 		textBox.vAlign = "top";
 		
+		speakerHead = new Image(Root.assets.getTexture("GrandpaHead"));
+		speakerHead.x = 30;
+		speakerHead.y = stageHeight - 144;
+		this.addChild(speakerHead);
+		
 		angryFilter = new SelectorFilter(0.25, 125.0, 10.25, 0.0);
 		normalFilter = new SelectorFilter(0.0, 0.0, 10.25, 0.0);
 		textBox.filter = normalFilter;
@@ -134,6 +141,7 @@ class Game extends Sprite
 		this.addChild(textBox);
 		
 		currentField = popTextObject();
+		currentSpeaker = currentField.speaker;
 		
 		startTextAnim();
 		
@@ -155,10 +163,12 @@ class Game extends Sprite
 				if (fieldState == FieldState.CORRECTION_TRANSITION) {
 					if(currentField.correct) {
 						fieldState = FieldState.NO_ERROR_RESPONSE;
+						currentSpeaker = Speakers.GRANDPA;
 						addStrike();
 					}
 					else {
 						fieldState = FieldState.CORRECTIONS;
+						currentSpeaker = Speakers.TIMMY;
 						menuSelection = 0;
 						normalFilter.selected = true;
 						normalFilter.selectedLine = 0;
@@ -185,12 +195,14 @@ class Game extends Sprite
 					errorsSkipped++;
 					addStrike();
 				}
+				currentSpeaker = Speakers.GRANDPA;
 				startTextAnim();
 			}
 		}
 		else if (event.keyCode == Keyboard.C) {
 			if (fieldState == FieldState.TEXT) {
 				fieldState = FieldState.CORRECTION_TRANSITION;
+				currentSpeaker = Speakers.TIMMY;
 				startTextAnim();
 			}
 		}
@@ -248,6 +260,7 @@ class Game extends Sprite
 		}
 		else
 		{
+			currentSpeaker = currentField.speaker;
 			startTextAnim();
 		}
 	}
@@ -259,6 +272,18 @@ class Game extends Sprite
 			animTimer.stop();
 		animTimer = new Timer(25);
 		animTimer.run = animationTick;
+		
+		switch(currentSpeaker) {
+			case Speakers.GRANDPA:
+				speakerHead.x = 418;
+				speakerHead.texture = Root.assets.getTexture("GrandpaHead");
+			case Speakers.TEACHER:
+				speakerHead.x = 418;
+				speakerHead.texture = Root.assets.getTexture("TeacherHead");
+			case Speakers.TIMMY:
+				speakerHead.x = 30;
+				speakerHead.texture = Root.assets.getTexture("TimmyHead");
+		}
 	}
 	
 	function skipTextAnim() {

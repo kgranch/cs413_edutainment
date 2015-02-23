@@ -53,6 +53,10 @@ class Root extends Sprite {
 		assets.enqueue("assets/font/5x7.png");
 		assets.enqueue("assets/font/5x7.fnt");
 		
+		assets.enqueue("assets/TeacherHead.png");
+		assets.enqueue("assets/TimmyHead.png");
+		assets.enqueue("assets/GrandpaHead.png");
+		
 		// Letter Grades
 		assets.enqueue("assets/Letter_A_Plus.png");
 		assets.enqueue("assets/Letter_A.png");
