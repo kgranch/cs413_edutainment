@@ -69,11 +69,6 @@ class GameOver extends Sprite {
 		this.errors = errors;
 		this.strikes = strikes;
 		
-		trace(progress);
-		trace(numFields);
-		trace(errors);
-		trace(strikes);
-		
 		super();
 	}
 	
@@ -123,7 +118,6 @@ class GameOver extends Sprite {
 		
 		var completeness = (progress / numFields) * 100;
 		var score = (progress - 2 * errors) / numFields * 100;
-		trace(score);
 		var gradeLookup = [
 			{ g: 100, a: "A_Plus",	m: "Perfect! I couldn't have done better myself!" },
 			{ g: 95, a: "A_Plus",	m: "Fantastic! This paper is wonderful!" },
