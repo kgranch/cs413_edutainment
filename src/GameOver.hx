@@ -36,6 +36,7 @@ class GameOver extends Sprite {
 	var paper:Image;
 	var paperHands:Image;
 	var textBubble:Image;
+	var gradeLetter:Image;
 	
 	var paperHeading:TextField;
 	var paperTitle:TextField;
@@ -55,17 +56,7 @@ class GameOver extends Sprite {
 		var stageHeight = Starling.current.stage.stageHeight;
 		
 		this.x = 0;
-		//this.y = stageHeight + 20;
-		
-		/*
-		gametitle = new TextField(350, 50, "Grandpa's Tall Tales", "5x7");
-		gametitle.text = "Grandpa's Tall Tales";
-		gametitle.fontSize = 45;
-		gametitle.color = Color.WHITE;
-		gametitle.x = center.x - 125;
-		gametitle.y = 50;
-		this.addChild(gametitle);
-		rootSprite.addChild(this); */
+		this.y = stageHeight + 20;
 		
 		paper = new Image(Root.assets.getTexture("GameOver"));
 		this.addChild(paper);
@@ -103,6 +94,33 @@ class GameOver extends Sprite {
 		paperBody.x = 175;
 		paperBody.y = 130;
 		this.addChild(paperBody);
+		
+		var score = 85;
+		var gradeLookup = [
+			{ g: 95, a: "A_Plus" },
+			{ g: 90, a: "A" },
+			{ g: 85, a: "B_Plus" },
+			{ g: 80, a: "B" },
+			{ g: 75, a: "C_Plus" },
+			{ g: 70, a: "C" },
+			{ g: 65, a: "D_Plus" },
+			{ g: 60, a: "D" },
+			{ g: 55, a: "F" },
+			{ g: 00, a: "F_Minus" },
+		];
+		var texAsset = "F_Minus";
+		for (i in 0...gradeLookup.length) {
+			var grade = gradeLookup[i];
+			if (score >= grade.g) {
+				texAsset = grade.a;
+				break;
+			}
+		}
+		
+		gradeLetter = new Image(Root.assets.getTexture("Letter_" + texAsset));
+		gradeLetter.x = 177;
+		gradeLetter.y = 35;
+		this.addChild(gradeLetter);
 		
 		paperHands = new Image(Root.assets.getTexture("GameOverHands"));
 		this.addChild(paperHands);

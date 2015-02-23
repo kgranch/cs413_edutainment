@@ -52,6 +52,18 @@ class Root extends Sprite {
 		assets.enqueue("assets/GameOverHands.png");
 		assets.enqueue("assets/font/5x7.png");
 		assets.enqueue("assets/font/5x7.fnt");
+		
+		// Letter Grades
+		assets.enqueue("assets/Letter_A_Plus.png");
+		assets.enqueue("assets/Letter_A.png");
+		assets.enqueue("assets/Letter_B_Plus.png");
+		assets.enqueue("assets/Letter_B.png");
+		assets.enqueue("assets/Letter_C_Plus.png");
+		assets.enqueue("assets/Letter_C.png");
+		assets.enqueue("assets/Letter_D_Plus.png");
+		assets.enqueue("assets/Letter_D.png");
+		assets.enqueue("assets/Letter_F.png");
+		assets.enqueue("assets/Letter_F_Minus.png");
 
         // Sounds
         assets.enqueue("assets/sounds/text_sound_1.mp3");
