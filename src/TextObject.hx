@@ -9,11 +9,16 @@ class TextObject extends Sprite
 	public var revised:String;
 	public var correct:Bool;
 	public var options:Array<String>;
+	public var speaker:Speakers;
 	
 	var order:Array<Int>;
 	
-	public function new(?text:String) {
+	public function new(?text:String, ?speaker:Speakers) {
 		this.text = text;
+		if(speaker != null)
+			this.speaker = speaker;
+		else
+			this.speaker = Speakers.GRANDPA;
 		super();
 	}
 	

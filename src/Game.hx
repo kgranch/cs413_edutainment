@@ -32,9 +32,11 @@ class Game extends Sprite
 	var strikes = 0;
 	var fieldProgress = 0; // Determines what textobject should be popped next
 	var fields:Array<TextObject>; // All of the textobject fields
+	var introFields:Array<TextObject>; // All of the intro fields
+	var outroFields:Array<TextObject>; // All of the outro fields
 	
 	var currentField:TextObject;
-	var fieldState = FieldState.TEXT;
+	var fieldState = FieldState.INTRO;
 	var renderProgress = 0; // How far in rendering the text animation we are (in characters)
 	var animating = false;
 	var soundCounter = 0;
@@ -60,6 +62,18 @@ class Game extends Sprite
 		super();
 		this.rootSprite = root;
 		this.levelFile = "chapter1";
+		
+		introFields = [
+			new TextObject("Hey Grandpa, can you tell me a story about the Great Depression?\n I have a paper to write!", Speakers.TIMMY),
+			new TextObject("Sure, little Timmy, I'd love to!", Speakers.GRANDPA),
+			new TextObject("Let's see...                    \nWhere to begin...?                          \nAH! I know!", Speakers.GRANDPA)
+		];
+		
+		outroFields = [
+			new TextObject("Well, that's all I've got for you today, Timmy. Good luck on your paper!", Speakers.GRANDPA),
+			new TextObject("Okay Gramps.. Thanks for all of the help! See ya!", Speakers.TIMMY)
+		];
+		
 		load();
 	}
 	
@@ -138,11 +152,29 @@ class Game extends Sprite
 			if(animating)
 				skipTextAnim();
 			else if (fieldState != FieldState.CORRECTIONS) {
-				if (fieldState == FieldState.TEXT && !currentField.correct) {
-					errorsSkipped++;
+				if (fieldState == FieldState.CORRECTION_TRANSITION) {
+					if(currentField.correct) {
+						fieldState = FieldState.NO_ERROR_RESPONSE;
+						addStrike();
+					}
+					else {
+						fieldState = FieldState.CORRECTIONS;
+						menuSelection = 0;
+						normalFilter.selected = true;
+						normalFilter.selectedLine = 0;
+					}
+					startTextAnim();
 				}
-				fieldState = FieldState.TEXT;
-				advanceField();
+				else
+				{
+					if (fieldState == FieldState.TEXT && !currentField.correct) {
+						errorsSkipped++;
+					}
+					
+					if(fieldState != FieldState.INTRO && fieldState != FieldState.OUTRO)
+						fieldState = FieldState.TEXT;
+					advanceField();
+				}
 			}
 			else {
 				normalFilter.selected = false;
@@ -158,16 +190,7 @@ class Game extends Sprite
 		}
 		else if (event.keyCode == Keyboard.C) {
 			if (fieldState == FieldState.TEXT) {
-				if(currentField.correct) {
-					fieldState = FieldState.NO_ERROR_RESPONSE;
-					addStrike();
-				}
-				else {
-					fieldState = FieldState.CORRECTIONS;
-					menuSelection = 0;
-					normalFilter.selected = true;
-					normalFilter.selectedLine = 0;
-				}
+				fieldState = FieldState.CORRECTION_TRANSITION;
 				startTextAnim();
 			}
 		}
@@ -214,7 +237,6 @@ class Game extends Sprite
 		currentField = popTextObject();
 		if (currentField == null)
 		{
-			
 			// Exit
 			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, errorsSkipped, strikes);
 			gameover.start();
@@ -272,10 +294,13 @@ class Game extends Sprite
 		var text = "";
 		switch(fieldState) {
 			case FieldState.TEXT: 						text = currentField.text;
+			case FieldState.INTRO: 						text = currentField.text;
+			case FieldState.OUTRO: 						text = currentField.text;
+			case FieldState.CORRECTION_TRANSITION:		text = "No grandpa... That's not right...";
 			case FieldState.CORRECTIONS: 				text = currentField.getOptionText();
 			case FieldState.ERROR_CORRECT_RESPONSE:		text = currentField.revised;
-			case FieldState.ERROR_INCORRECT_RESPONSE:	text = "Incorrect!";
-			case FieldState.NO_ERROR_RESPONSE:			text = "No Errors Here!";
+			case FieldState.ERROR_INCORRECT_RESPONSE:	text = "DO YOU REALLY THINK THAT'S RIGHT, KIDDO?! REALLY!? THAT!?";
+			case FieldState.NO_ERROR_RESPONSE:			text = "SONNY BOY, DON'T QUESTION ME. I WAS THERE, REMEMBER?";
 		}
 		
 		return text;
@@ -312,9 +337,30 @@ class Game extends Sprite
 	}
 	
 	function popTextObject():TextObject {
+		
+		var fields = this.fields;
+		if (fieldState == FieldState.INTRO)
+			fields = introFields;
+		else if (fieldState == FieldState.OUTRO)
+			fields = outroFields;
+		
 		renderProgress = 0;
-		if(fieldProgress < this.fields.length)
-			return this.fields[fieldProgress++];
+		if(fieldProgress < fields.length)
+			return fields[fieldProgress++];
+		else {
+			
+			if (fieldState == FieldState.INTRO) {
+				fieldState = FieldState.TEXT;
+				fieldProgress = 0;
+				return popTextObject();
+			}
+			else if (fieldState != FieldState.OUTRO) {
+				fieldState = FieldState.OUTRO;
+				fieldProgress = 0;
+				return popTextObject();
+			}
+			
+		}
 		return null;
 		
 	}
@@ -333,8 +379,11 @@ class Game extends Sprite
 
 enum FieldState {
 	TEXT;
+	CORRECTION_TRANSITION;
 	CORRECTIONS;
 	NO_ERROR_RESPONSE;
 	ERROR_CORRECT_RESPONSE;
 	ERROR_INCORRECT_RESPONSE;
+	INTRO;
+	OUTRO;
 }
