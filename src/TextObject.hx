@@ -12,7 +12,8 @@ class TextObject extends Sprite
 	
 	var order:Array<Int>;
 	
-	public function new() {
+	public function new(?text:String) {
+		this.text = text;
 		super();
 	}
 	
