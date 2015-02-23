@@ -79,12 +79,14 @@ class GameOver extends Sprite {
 		var stageHeight = Starling.current.stage.stageHeight;
 		
 		bg = new Image(Root.assets.getTexture("Classroom"));
+		bg.smoothing = "none";
 		this.addChild(bg);
 		
 		paperContainer = new Sprite();
 		paperContainer.x = 0;
 		paperContainer.y = stageHeight + 20;
 		paper = new Image(Root.assets.getTexture("GameOver"));
+		paper.smoothing = "none";
 		paperContainer.addChild(paper);
 		
 		var date = Date.now();
@@ -148,20 +150,24 @@ class GameOver extends Sprite {
 		gradeLetter = new Image(Root.assets.getTexture("Letter_" + grade.a));
 		gradeLetter.x = 177;
 		gradeLetter.y = 35;
+		gradeLetter.smoothing = "none";
 		paperContainer.addChild(gradeLetter);
 		
 		paperHands = new Image(Root.assets.getTexture("GameOverHands"));
+		paperHands.smoothing = "none";
 		paperContainer.addChild(paperHands);
 		this.addChild(paperContainer);
 		
 		textBubble = new Image(Root.assets.getTexture("TextBubble"));
 		textBubble.x = 13;
 		textBubble.y = stageHeight - 80;
+		textBubble.smoothing = "none";
 		this.addChild(textBubble);
 		
 		speakerHead = new Image(Root.assets.getTexture("TeacherHead"));
 		speakerHead.x = 418;
 		speakerHead.y = stageHeight - 144;
+		speakerHead.smoothing = "none";
 		this.addChild(speakerHead);
 		
 		fields = new Array<TextObject>();

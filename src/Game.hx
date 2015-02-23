@@ -105,6 +105,7 @@ class Game extends Sprite
 		fire.y = 235;
 		textBubble.x = 13;
 		textBubble.y = stageHeight - 80;
+		textBubble.smoothing = "none";
 		this.addChild(bg);
 		this.addChild(grandpa);
 		this.addChild(boy);
@@ -116,6 +117,7 @@ class Game extends Sprite
 			var img = new Image(Root.assets.getTexture("StrikeGray"));
 			img.x = 10 + 40 * i;
 			img.y = 10;
+			img.smoothing = "none";
 			strikeImages.push(img);
 			this.addChild(img);
 		}
@@ -132,6 +134,7 @@ class Game extends Sprite
 		speakerHead = new Image(Root.assets.getTexture("GrandpaHead"));
 		speakerHead.x = 30;
 		speakerHead.y = stageHeight - 144;
+		speakerHead.smoothing = "none";
 		this.addChild(speakerHead);
 		
 		angryFilter = new SelectorFilter(0.25, 125.0, 10.25, 0.0);

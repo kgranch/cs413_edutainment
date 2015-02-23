@@ -27,6 +27,7 @@ class Fire extends Sprite
     private function animate()
     {
         fireArt = new MovieClip(Root.assets.getTextures("Fire_"), 6);
+		fireArt.smoothing = "none";
         starling.core.Starling.juggler.add(fireArt);
         this.addChild(fireArt);
 

@@ -28,7 +28,8 @@ class Grandpa extends Sprite
     {
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaBubble_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
-        grandpaArt.y = Math.ceil(-grandpaArt.height/2 + 50);
+        grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
+		grandpaArt.smoothing = "none";
         grandpaArt.advanceTime(-5);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);

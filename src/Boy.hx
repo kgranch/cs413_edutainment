@@ -27,6 +27,7 @@ class Boy extends Sprite
     private function scratch()
     {
         boyArt = new MovieClip(Root.assets.getTextures("Boy_"), 6);
+		boyArt.smoothing = "none";
         starling.core.Starling.juggler.add(boyArt);
         this.addChild(boyArt);
 
