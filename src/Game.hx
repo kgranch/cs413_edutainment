@@ -26,6 +26,8 @@ class Game extends Sprite
 	var rootSprite:Sprite;
 	var levelFile:String;
 	
+	var errorsSkipped = 0;
+	var strikes = 0;
 	var fieldProgress = 0; // Determines what textobject should be popped next
 	var fields:Array<TextObject>; // All of the textobject fields
 	
@@ -48,7 +50,7 @@ class Game extends Sprite
 	var grandpa:Grandpa;
 	var boy:Image;
 	var fire: Image;
-
+	var strikeImages:Array<Image>;
 	
 	public function new(root:Sprite) {
 		super();
@@ -62,6 +64,9 @@ class Game extends Sprite
 		var stage = Starling.current.stage;
 		var stageWidth:Float = Starling.current.stage.stageWidth;
 		var stageHeight:Float = Starling.current.stage.stageHeight;
+		
+		errorsSkipped = 0;
+		strikes = 0;
 		
 		Starling.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
@@ -85,6 +90,15 @@ class Game extends Sprite
 		this.addChild(boy);
 		this.addChild(fire);
 		this.addChild(textBubble);
+		
+		strikeImages = new Array<Image>();
+		for (i in 0...3) {
+			var img = new Image(Root.assets.getTexture("StrikeGray"));
+			img.x = 10 + 40 * i;
+			img.y = 10;
+			strikeImages.push(img);
+			this.addChild(img);
+		}
 
 		rootSprite.addChild(this);
 		
@@ -120,6 +134,9 @@ class Game extends Sprite
 			if(animating)
 				skipTextAnim();
 			else if (fieldState != FieldState.CORRECTIONS) {
+				if (fieldState == FieldState.TEXT && !currentField.correct) {
+					errorsSkipped++;
+				}
 				fieldState = FieldState.TEXT;
 				advanceField();
 			}
@@ -127,15 +144,19 @@ class Game extends Sprite
 				normalFilter.selected = false;
 				if (currentField.checkAnswer(menuSelection + 1))
 					fieldState = FieldState.ERROR_CORRECT_RESPONSE;
-				else
+				else {
 					fieldState = FieldState.ERROR_INCORRECT_RESPONSE;
+					addStrike();
+				}
 				startTextAnim();
 			}
 		}
 		else if (event.keyCode == Keyboard.C) {
 			if (fieldState == FieldState.TEXT) {
-				if(currentField.correct)
+				if(currentField.correct) {
 					fieldState = FieldState.NO_ERROR_RESPONSE;
+					addStrike();
+				}
 				else {
 					fieldState = FieldState.CORRECTIONS;
 					menuSelection = 0;
@@ -168,10 +189,25 @@ class Game extends Sprite
 			textBox.filter = normalFilter;
 	}
 	
+	function addStrike() {
+		strikeImages[strikes].texture = Root.assets.getTexture("Strike");
+		strikes++;
+		if (strikes == 4) {
+			
+			// Exit
+			var menu = new Main(rootSprite);
+			menu.start();
+			cleanup();
+			this.removeFromParent();
+			this.dispose();
+		}
+	}
+	
 	function advanceField() {
 		currentField = popTextObject();
 		if (currentField == null)
 		{
+			
 			// Exit
 			var menu = new Main(rootSprite);
 			menu.start();

@@ -46,6 +46,8 @@ class Root extends Sprite {
         assets.enqueue("assets/Sprites.xml");
         assets.enqueue("assets/Background.png");
         assets.enqueue("assets/TextBubble.png");
+		assets.enqueue("assets/Strike.png");
+		assets.enqueue("assets/StrikeGray.png");
 		assets.enqueue("assets/font/5x7.png");
 		assets.enqueue("assets/font/5x7.fnt");
 
