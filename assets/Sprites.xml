@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:16de377022f1c8c40509fc664d481795:e4f58096fa3d70196ad9a8d4519c14e3:c43aba4fdaea3040fc976da76a6a1485$ -->
+<!-- $TexturePacker:SmartUpdate:5b2be97647b83815d7edfa3d95953fc0:879be53b03736e69ed4329351dd193b3:c43aba4fdaea3040fc976da76a6a1485$ -->
 <TextureAtlas imagePath="Sprites.png">
     <SubTexture name="Boy_1" x="2" y="2" width="50" height="55"/>
     <SubTexture name="Boy_2" x="54" y="2" width="50" height="55"/>
@@ -47,4 +47,7 @@
     <SubTexture name="GrandpaScratch_5" x="410" y="425" width="100" height="120"/>
     <SubTexture name="GrandpaScratch_6" x="308" y="425" width="100" height="120"/>
     <SubTexture name="GrandpaScratch_7" x="410" y="425" width="100" height="120"/>
+    <SubTexture name="Teacher_1" x="2" y="547" width="75" height="100"/>
+    <SubTexture name="Teacher_2" x="79" y="547" width="75" height="100"/>
+    <SubTexture name="Teacher_3" x="156" y="547" width="75" height="100"/>
 </TextureAtlas>
