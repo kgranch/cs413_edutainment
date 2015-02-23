@@ -38,6 +38,7 @@ class GameOver extends Sprite {
 	var errors:Int;
 	var strikes:Int;
 	
+	var paperContainer:Sprite;
 	var paper:Image;
 	var paperHands:Image;
 	var textBubble:Image;
@@ -77,12 +78,14 @@ class GameOver extends Sprite {
 		
 		var stageHeight = Starling.current.stage.stageHeight;
 		
-		this.x = 0;
-		this.y = stageHeight + 20;
 		bg = new Image(Root.assets.getTexture("Classroom"));
-		paper = new Image(Root.assets.getTexture("GameOver"));
 		this.addChild(bg);
-		this.addChild(paper);
+		
+		paperContainer = new Sprite();
+		paperContainer.x = 0;
+		paperContainer.y = stageHeight + 20;
+		paper = new Image(Root.assets.getTexture("GameOver"));
+		paperContainer.addChild(paper);
 		
 		var date = Date.now();
 		var headingTxt = "L. Timmy\n" +
@@ -94,14 +97,14 @@ class GameOver extends Sprite {
 		paperHeading.hAlign = "right";
 		paperHeading.x = 150;
 		paperHeading.y = 40;
-		this.addChild(paperHeading);
+		paperContainer.addChild(paperHeading);
 		
 		paperTitle = new TextField(180, 50, "The Depression According To Gramps", "5x7", 16, 0x0);
 		paperTitle.vAlign = "top";
 		paperTitle.hAlign = "center";
 		paperTitle.x = 175;
 		paperTitle.y = 100;
-		this.addChild(paperTitle);
+		paperContainer.addChild(paperTitle);
 		
 		var bodyText = "    Think back to the first time you ever heard of the Great Depression. At " +
 					   "first glance, the Great Depression may seem unenchanting. However, it's study " +
@@ -116,7 +119,7 @@ class GameOver extends Sprite {
 		paperBody.hAlign = "left";
 		paperBody.x = 175;
 		paperBody.y = 130;
-		this.addChild(paperBody);
+		paperContainer.addChild(paperBody);
 		
 		var completeness = (progress / numFields) * 100;
 		var score = (progress - 2 * errors) / numFields * 100;
@@ -145,10 +148,11 @@ class GameOver extends Sprite {
 		gradeLetter = new Image(Root.assets.getTexture("Letter_" + grade.a));
 		gradeLetter.x = 177;
 		gradeLetter.y = 35;
-		this.addChild(gradeLetter);
+		paperContainer.addChild(gradeLetter);
 		
 		paperHands = new Image(Root.assets.getTexture("GameOverHands"));
-		this.addChild(paperHands);
+		paperContainer.addChild(paperHands);
+		this.addChild(paperContainer);
 		
 		textBubble = new Image(Root.assets.getTexture("TextBubble"));
 		textBubble.x = 13;
@@ -218,7 +222,7 @@ class GameOver extends Sprite {
 
 	private function transitionOut(?callBack:Void->Void) {
 
-		var t = new Tween(this, transitionOutSpeed, Transitions.EASE_IN_OUT);
+		var t = new Tween(paperContainer, transitionOutSpeed, Transitions.EASE_IN_OUT);
 		t.animate("y", Starling.current.stage.stageHeight + 10);
 		t.onComplete = callBack;
 		Starling.juggler.add(t);
@@ -231,7 +235,7 @@ class GameOver extends Sprite {
 	
 	private function transitionIn(?callBack:Void->Void) {
 		
-		var t = new Tween(this, transitionInSpeed, Transitions.EASE_IN_OUT);
+		var t = new Tween(paperContainer, transitionInSpeed, Transitions.EASE_IN_OUT);
 		t.animate("y", 0);
 		t.onComplete = callBack;
 		Starling.juggler.add(t);
