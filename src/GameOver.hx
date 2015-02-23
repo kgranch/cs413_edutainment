@@ -48,6 +48,12 @@ class GameOver extends Sprite {
 		this.numFields = numFields;
 		this.errors = errors;
 		this.strikes = strikes;
+		
+		trace(progress);
+		trace(numFields);
+		trace(errors);
+		trace(strikes);
+		
 		super();
 	}
 	
@@ -95,7 +101,8 @@ class GameOver extends Sprite {
 		paperBody.y = 130;
 		this.addChild(paperBody);
 		
-		var score = 85;
+		var score = (progress - 2 * errors) / numFields * 100;
+		trace(score);
 		var gradeLookup = [
 			{ g: 95, a: "A_Plus" },
 			{ g: 90, a: "A" },

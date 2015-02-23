@@ -150,6 +150,7 @@ class Game extends Sprite
 					fieldState = FieldState.ERROR_CORRECT_RESPONSE;
 				else {
 					fieldState = FieldState.ERROR_INCORRECT_RESPONSE;
+					errorsSkipped++;
 					addStrike();
 				}
 				startTextAnim();
