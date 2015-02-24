@@ -5,12 +5,14 @@ import starling.display.Sprite;
 import starling.events.Event;
 import starling.textures.Texture;
 import starling.textures.TextureAtlas;
+import flash.media.SoundChannel;
+import flash.media.Sound;
 
 class Grandpa extends Sprite
 {
 
     private var grandpaArt:MovieClip;
-
+	
     public function new()
     {
         super();
@@ -23,8 +25,23 @@ class Grandpa extends Sprite
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		sit();
 		
+		
     }
-
+	public function transitionS(game:Game){
+		var x =  Std.random(100);
+		if(x <60 ){
+			game.removeChild(grandpaArt);
+			scratch();
+		}
+		else{
+			game.removeChild(grandpaArt);
+			snore();
+		}
+	}
+	public function transitionF(game:Game){
+		game.removeChild(grandpaArt);
+		fart();
+	}
 	private function sit()
     {
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaOrig"));
@@ -67,6 +84,7 @@ class Grandpa extends Sprite
         grandpaArt.advanceTime(-5);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
+		Root.assets.playSound("fart_sound_1");
 
     }
 	
