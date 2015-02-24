@@ -50,6 +50,7 @@ class Game extends Sprite
 	var angryFilter:SelectorFilter;
 	var normalFilter:SelectorFilter;
 
+
 	var bg:Image;
 	var textBubble:Image;
 	var speakerHead:Image;
@@ -138,11 +139,12 @@ class Game extends Sprite
 		speakerHead.smoothing = "none";
 		this.addChild(speakerHead);
 		
+		
 		angryFilter = new SelectorFilter(0.25, 125.0, 10.25, 0.0);
 		normalFilter = new SelectorFilter(0.0, 0.0, 10.25, 0.0);
 		textBox.filter = normalFilter;
 		
-		this.addChild(textBox);
+		addChild(textBox);
 		
 		currentField = popTextObject();
 		currentSpeaker = currentField.speaker;
@@ -204,11 +206,27 @@ class Game extends Sprite
 			}
 		}
 		else if (event.keyCode == Keyboard.C) {
+		
+			//GRANDPA STARTS SCRATCHING OR SNORING WHEN YOU TRY TO CORRECT HIM
+			this.removeChild(grandpa);
+			grandpa = new Grandpa();
+			grandpa.transitionS(this);
+			grandpa.x = 270;
+			grandpa.y = 190;
+			this.addChild(grandpa);
 			if (fieldState == FieldState.TEXT) {
+			
+				//GRANDPA SHOULD ONLY FART WHEN HE WAS CORRECT, HAPPENS EVERY TIME
+				this.removeChild(grandpa);
+				grandpa = new Grandpa();
+				grandpa.transitionF(this);
+				grandpa.x = 270;
+				grandpa.y = 190;
+				this.addChild(grandpa);
 				fieldState = FieldState.CORRECTION_TRANSITION;
 				currentSpeaker = Speakers.TIMMY;
-				startTextAnim();
-			}
+				startTextAnim();				
+				}
 		}
 		else if (fieldState == FieldState.CORRECTIONS) {
 			switch(event.keyCode) {
@@ -276,6 +294,7 @@ class Game extends Sprite
 			animTimer.stop();
 		animTimer = new Timer(25);
 		animTimer.run = animationTick;
+		
 		
 		switch(currentSpeaker) {
 			case Speakers.GRANDPA:
