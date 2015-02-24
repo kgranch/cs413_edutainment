@@ -74,6 +74,7 @@ class Root extends Sprite {
         // Sounds
         assets.enqueue("assets/sounds/text_sound_1.mp3");
         assets.enqueue("assets/sounds/text_sound_2.mp3");
+		assets.enqueue("assets/sounds/fart_sound_1.mp3");
 		
 		// Levels
 		assets.enqueue("assets/levels/chapter1.txt");
