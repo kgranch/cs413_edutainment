@@ -48,7 +48,6 @@ class Grandpa extends Sprite
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
 		grandpaArt.smoothing = "none";
-        grandpaArt.advanceTime(-5);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
 
@@ -59,7 +58,9 @@ class Grandpa extends Sprite
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
 		grandpaArt.smoothing = "none";
-        grandpaArt.advanceTime(-5);
+        grandpaArt.loop = true;
+        grandpaArt.addFrameAt(7,Root.assets.getTexture("GrandpaScratch_1"));    // adds the 1st frame to the end so his hand comes back down
+        grandpaArt.setFrameDuration(7, 60);                                     // sets this last frame to last 60 seconds, then loops from the start
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
 		Root.assets.playSound("scratch_sound_1");
@@ -71,7 +72,6 @@ class Grandpa extends Sprite
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
 		grandpaArt.smoothing = "none";
-        grandpaArt.advanceTime(-5);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
 
@@ -82,7 +82,6 @@ class Grandpa extends Sprite
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
 		grandpaArt.smoothing = "none";
-        grandpaArt.advanceTime(-5);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
 		Root.assets.playSound("fart_sound_1");
