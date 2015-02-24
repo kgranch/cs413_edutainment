@@ -1,8 +1,17 @@
+
+
 C
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in efficitur ma
-gna. Nam pellentesque gravida diam non commodo. Cras id hendrerit metus. Lorem i
-psum dolor sit amet, consectetur adipiscing elit. Fusce fringilla risus quis lob
-ortis porta. Phasellus ac malesuada massa. Pellentesque sed velit consequat, rho
+So you want to know about the Great Depression, eh? Well I'll tell ya ALL about it.
+And ya better listen close too, y'hear? Sometimes my memory's not so good, and I 
+might make a mistake, so I'll need ya to point it out to me. That being said, if ya
+correct me on things when I know I'm right too many times, I'll give ya the boot!
+I'm a patient man, but I'd say I could handle that about three times before I snap.
+
+
+C
+Now enough of that! Let's get started.  
+
+
 I
 Sed ut laoreet nisi. Quisque et suscipit lectus. Nulla vel ex justo. Nam libero 
 enim, dignissim sed sem nec, cursus varius nibh. Suspendisse nec erat ullamcorpe

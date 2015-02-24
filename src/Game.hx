@@ -364,6 +364,8 @@ class Game extends Sprite
 		try {
 			while (true) {
 				var field = new TextObject();
+				bi.readLine();
+				bi.readLine();
 				field.correct = bi.readLine() == "C";
 				field.text = bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine();
 				if(!field.correct) {
