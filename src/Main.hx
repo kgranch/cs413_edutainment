@@ -48,13 +48,14 @@ class Main extends Sprite {
 		this.y = center.y;
 		this.scaleX = 8;
 		this.scaleY = 8;
-		
+		bg = new Image(Root.assets.getTexture("Intro"));
 		gametitle = new TextField(350, 50, "Grandpa's Tall Tales", "5x7");
 		gametitle.text = "Grandpa's Tall Tales";
 		gametitle.fontSize = 45;
 		gametitle.color = Color.WHITE;
 		gametitle.x = center.x - 125;
 		gametitle.y = 50;
+		this.addChild(bg);
 		this.addChild(gametitle);
 		rootSprite.addChild(this);
 
