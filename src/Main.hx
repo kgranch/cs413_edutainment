@@ -55,6 +55,7 @@ class Main extends Sprite {
 		gametitle.color = Color.WHITE;
 		gametitle.x = center.x - 125;
 		gametitle.y = 50;
+		TextField.getBitmapFont("5x7").smoothing = "none";
 		this.addChild(bg);
 		this.addChild(gametitle);
 		rootSprite.addChild(this);
