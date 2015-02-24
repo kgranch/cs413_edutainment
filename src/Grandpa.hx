@@ -19,12 +19,35 @@ class Grandpa extends Sprite
 
     private function onAddedToStage(event:Event)
     {
-
+		
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-        snore();
+		sit();
+		
     }
 
-    private function snore()
+	private function sit()
+    {
+        grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaOrig"));
+        grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
+        grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
+		grandpaArt.smoothing = "none";
+        grandpaArt.advanceTime(-5);
+        starling.core.Starling.juggler.add(grandpaArt);
+        this.addChild(grandpaArt);
+
+    }
+	private function scratch()
+    {
+        grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaScratch_"), 5);
+        grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
+        grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
+		grandpaArt.smoothing = "none";
+        grandpaArt.advanceTime(-5);
+        starling.core.Starling.juggler.add(grandpaArt);
+        this.addChild(grandpaArt);
+
+    }
+	private function snore()
     {
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaBubble_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
@@ -35,4 +58,18 @@ class Grandpa extends Sprite
         this.addChild(grandpaArt);
 
     }
+    private function fart()
+    {
+        grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaFart_"), 5);
+        grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
+        grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
+		grandpaArt.smoothing = "none";
+        grandpaArt.advanceTime(-5);
+        starling.core.Starling.juggler.add(grandpaArt);
+        this.addChild(grandpaArt);
+
+    }
+	
+	
+	
 }
