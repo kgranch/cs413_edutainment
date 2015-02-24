@@ -23,7 +23,7 @@ class Grandpa extends Sprite
     {
 		
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-		sit();
+		scratch();
 		
 		
     }
@@ -62,7 +62,8 @@ class Grandpa extends Sprite
         grandpaArt.advanceTime(-5);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
-
+		Root.assets.playSound("scratch_sound_1");
+	
     }
 	private function snore()
     {

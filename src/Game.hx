@@ -169,7 +169,17 @@ class Game extends Sprite
 				if (fieldState == FieldState.CORRECTION_TRANSITION) {
 					if(currentField.correct) {
 						fieldState = FieldState.NO_ERROR_RESPONSE;
-						currentSpeaker = Speakers.GRANDPA;
+						currentSpeaker = Speakers.GRANDPA;						
+						
+						//GRANDPA WILL FART OUT OF EXCITEMENT FOR BEING CORRECT
+						//CURRENTLY THE SOUND PLAYS AT THE SAME TIME AS THE WRONG SOUND
+						this.removeChild(grandpa);
+						grandpa = new Grandpa();
+						grandpa.transitionF(this);
+						grandpa.x = 270;
+						grandpa.y = 190;
+						this.addChild(grandpa);
+						
 						addStrike();
 					}
 					else {
@@ -216,13 +226,6 @@ class Game extends Sprite
 			this.addChild(grandpa);
 			if (fieldState == FieldState.TEXT) {
 			
-				//GRANDPA SHOULD ONLY FART WHEN HE WAS CORRECT, HAPPENS EVERY TIME
-				this.removeChild(grandpa);
-				grandpa = new Grandpa();
-				grandpa.transitionF(this);
-				grandpa.x = 270;
-				grandpa.y = 190;
-				this.addChild(grandpa);
 				fieldState = FieldState.CORRECTION_TRANSITION;
 				currentSpeaker = Speakers.TIMMY;
 				startTextAnim();				
@@ -252,6 +255,8 @@ class Game extends Sprite
 	}
 	
 	function addStrike() {
+		//Plays wrong sound
+		Root.assets.playSound("wrong_sound_2");
 		strikeImages[strikes].texture = Root.assets.getTexture("Strike");
 		strikes++;
 		if (strikes == 4) {
