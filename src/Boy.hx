@@ -37,5 +37,6 @@ class Boy extends Sprite
         boyArt.setFrameDuration(7, 30);
         starling.core.Starling.juggler.add(boyArt);
         this.addChild(boyArt);
+		Root.assets.playSound("boy_scratch_sound_1");
     }
 }
