@@ -48,38 +48,41 @@ class Root extends Sprite {
         assets.enqueue("assets/Intro.png");
         assets.enqueue("assets/Classroom.png");
         assets.enqueue("assets/TextBubble.png");
-		assets.enqueue("assets/Strike.png");
-		assets.enqueue("assets/StrikeGray.png");
-		assets.enqueue("assets/GameOver.png");
-		assets.enqueue("assets/GameOverHands.png");
-		assets.enqueue("assets/font/5x7.png");
-		assets.enqueue("assets/font/5x7.fnt");
+	assets.enqueue("assets/Strike.png");
+	assets.enqueue("assets/StrikeGray.png");
+	assets.enqueue("assets/GameOver.png");
+	assets.enqueue("assets/GameOverHands.png");
+	assets.enqueue("assets/font/5x7.png");
+	assets.enqueue("assets/font/5x7.fnt");
 		
-		assets.enqueue("assets/TeacherHead.png");
-		assets.enqueue("assets/TimmyHead.png");
-		assets.enqueue("assets/GrandpaHead.png");
+	assets.enqueue("assets/TeacherHead.png");
+	assets.enqueue("assets/TimmyHead.png");
+	assets.enqueue("assets/GrandpaHead.png");
 		
-		// Letter Grades
-		assets.enqueue("assets/Letter_A_Plus.png");
-		assets.enqueue("assets/Letter_A.png");
-		assets.enqueue("assets/Letter_B_Plus.png");
-		assets.enqueue("assets/Letter_B.png");
-		assets.enqueue("assets/Letter_C_Plus.png");
-		assets.enqueue("assets/Letter_C.png");
-		assets.enqueue("assets/Letter_D_Plus.png");
-		assets.enqueue("assets/Letter_D.png");
-		assets.enqueue("assets/Letter_F.png");
-		assets.enqueue("assets/Letter_F_Minus.png");
+	// Letter Grades
+	assets.enqueue("assets/Letter_A_Plus.png");
+	assets.enqueue("assets/Letter_A.png");
+	assets.enqueue("assets/Letter_B_Plus.png");
+	assets.enqueue("assets/Letter_B.png");
+	assets.enqueue("assets/Letter_C_Plus.png");
+	assets.enqueue("assets/Letter_C.png");
+	assets.enqueue("assets/Letter_D_Plus.png");
+	assets.enqueue("assets/Letter_D.png");
+	assets.enqueue("assets/Letter_F.png");
+	assets.enqueue("assets/Letter_F_Minus.png");
 
         // Sounds
         assets.enqueue("assets/sounds/text_sound_1.mp3");
         assets.enqueue("assets/sounds/text_sound_2.mp3");
-		assets.enqueue("assets/sounds/fart_sound_1.mp3");
-		assets.enqueue("assets/sounds/scratch_sound_1.mp3");
-		assets.enqueue("assets/sounds/wrong_sound_2.mp3");
+	assets.enqueue("assets/sounds/fart_sound_1.mp3");
+	assets.enqueue("assets/sounds/scratch_sound_1.mp3");
+	assets.enqueue("assets/sounds/wrong_sound_2.mp3");
+	
+	//Music
+	assets.enqueue("assets/sounds/testing.mp3");
 		
-		// Levels
-		assets.enqueue("assets/levels/chapter1.txt");
+	// Levels
+	assets.enqueue("assets/levels/chapter1.txt");
 		
         assets.loadQueue(function onProgress(ratio:Float) {
             haxe.Log.clear();
