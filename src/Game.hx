@@ -219,7 +219,7 @@ class Game extends Sprite
 		
 			//GRANDPA STARTS SCRATCHING OR SNORING WHEN YOU TRY TO CORRECT HIM
 			this.removeChild(grandpa);
-			grandpa = new Grandpa();
+			//grandpa = new Grandpa();
 			grandpa.transitionS(this);
 			grandpa.x = 270;
 			grandpa.y = 190;

@@ -23,10 +23,11 @@ class Grandpa extends Sprite
     {
 		
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-		scratch();
+		sit();
 		
 		
     }
+
 	public function transitionS(game:Game){
 		var x =  Std.random(100);
 		if(x <60 ){
@@ -61,7 +62,7 @@ class Grandpa extends Sprite
 		grandpaArt.smoothing = "none";
         grandpaArt.loop = true;
         grandpaArt.addFrameAt(7,Root.assets.getTexture("GrandpaScratch_1"));    // adds the 1st frame to the end so his hand comes back down
-        grandpaArt.setFrameDuration(7, 60);                                     // sets this last frame to last 60 seconds, then loops from the start
+        grandpaArt.setFrameDuration(7, 5);                                     // sets this last frame to last 60 seconds, then loops from the start
         grandpaArt.setFrameSound(2, scratch);
         grandpaArt.setFrameSound(3, scratch);
         grandpaArt.setFrameSound(4, scratch);
@@ -92,7 +93,5 @@ class Grandpa extends Sprite
 		Root.assets.playSound("fart_sound_1");
 
     }
-	
-	
 	
 }
