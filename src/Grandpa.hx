@@ -54,7 +54,7 @@ class Grandpa extends Sprite
     }
 	private function scratch()
     {
-        var scratch1:Sound = Root.assets.getSound("scratch_sound_1");
+        var scratch1:Sound = Root.assets.getSound("scratch_sound_3");
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaScratch_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
