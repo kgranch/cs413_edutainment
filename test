@@ -7,6 +7,7 @@ haxe \
 	-main Startup \
 	-swf Game.swf \
 	-swf-lib vendor/starling_1_6.swc --macro "patchTypes('vendor/starling.patch')" \
+	-swf-lib vendor/pixelFilter.swc --macro "patchTypes('vendor/starling.patch')" \
 	-debug
 
 /c/Users/Kyle/AppData/Local/FlashDevelop/Apps/flexairsdk/4.6.0+16.0.0/bin/adl.exe -profile tv -screensize 1024x768:1024x7688 Game.xml
