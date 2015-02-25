@@ -23,7 +23,7 @@ class Grandpa extends Sprite
     {
 		
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-		scratch();
+		sit();
 		
 		
     }
