@@ -55,6 +55,7 @@ class Game extends Sprite
 	var textBubble:Image;
 	var speakerHead:Image;
 	var grandpa:Grandpa;
+	var teacher:Teacher;
 	var boy:Boy;
 	var fire: Fire;
 	var strikeImages:Array<Image>;
@@ -64,9 +65,17 @@ class Game extends Sprite
 	public function new(root:Sprite) {
 		super();
 		this.rootSprite = root;
+
+
 		this.levelFile = "chapter1";
 		
 		introFields = [
+			new TextObject("Timmy, I want you to write a paper!!", Speakers.TEACHER, Backgrounds.SCHOOL),
+			new TextObject("OK! How about World War II?", Speakers.TIMMY, Backgrounds.SCHOOL),
+			new TextObject("No! That is an awful idea. Write about the Great Depression.", Speakers.TEACHER, Backgrounds.SCHOOL),
+			new TextObject("Aww :(                                  \nOkay then....", Speakers.TIMMY, Backgrounds.SCHOOL),
+			new TextObject("You're going to interview your grandpa. He has a bad memory, so correct\n" +
+						"him by hitting the [C] key.", Speakers.TEACHER, Backgrounds.SCHOOL),
 			new TextObject("Hey Grandpa, can you tell me a story about the Great Depression? \nI have a paper to write!", Speakers.TIMMY),
 			new TextObject("Sure, little Timmy, I'd love to!", Speakers.GRANDPA),
 			new TextObject("Let's see...                    \nWhere to begin...?                          \nAH! I know!", Speakers.GRANDPA)
@@ -74,7 +83,9 @@ class Game extends Sprite
 		
 		outroFields = [
 			new TextObject("Well, that's all I've got for you today, Timmy. Good luck on your paper!", Speakers.GRANDPA),
-			new TextObject("Okay Gramps.. Thanks for all of the help! See ya!", Speakers.TIMMY)
+			new TextObject("Okay Gramps.. Thanks for all of the help! See ya!", Speakers.TIMMY),
+			new TextObject("Hey teach. I got my paper finished!", Speakers.TIMMY, Backgrounds.SCHOOL),
+			new TextObject("Okay. Let's see how you did. I'm expecting a lot from you this time.", Speakers.TEACHER, Backgrounds.SCHOOL)
 		];
 		
 		load();
@@ -96,11 +107,14 @@ class Game extends Sprite
 		grandpa = new Grandpa();
 		boy = new Boy();
 		fire = new Fire();
+		teacher = new Teacher();
 		textBubble = new Image(Root.assets.getTexture("TextBubble"));
 
 		bg.smoothing = "none";
 		grandpa.x = 270;
 		grandpa.y = 190;
+		teacher.x = 170;
+		teacher.y = 190;
 		boy.x = 190;
 		boy.y = 250;
 		fire.x = 440;
@@ -110,6 +124,7 @@ class Game extends Sprite
 		textBubble.smoothing = "none";
 		this.addChild(bg);
 		this.addChild(grandpa);
+		this.addChild(teacher);
 		this.addChild(boy);
 		this.addChild(fire);
 		this.addChild(textBubble);
@@ -311,6 +326,21 @@ class Game extends Sprite
 			case Speakers.TIMMY:
 				speakerHead.x = 30;
 				speakerHead.texture = Root.assets.getTexture("TimmyHead");
+		}
+
+		switch(currentField.background) {
+			case Backgrounds.HOUSE:
+				bg.texture = Root.assets.getTexture("Background");
+				grandpa.visible = true;
+				fire.visible = true;
+				boy.visible = true;
+				teacher.visible = false;
+			case Backgrounds.SCHOOL:
+				bg.texture = Root.assets.getTexture("Classroom");
+				grandpa.visible = false;
+				fire.visible = false;
+				boy.visible = false;
+				teacher.visible = true;
 		}
 	}
 	
