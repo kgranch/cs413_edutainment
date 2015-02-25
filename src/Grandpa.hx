@@ -65,7 +65,7 @@ class Grandpa extends Sprite
         grandpaArt.setFrameSound(1, scratch1);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
-		//Root.assets.playSound("scratch_sound_1");
+		Root.assets.playSound("scratch_sound_1");
 	
     }
 	private function snore()
