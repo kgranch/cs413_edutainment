@@ -60,7 +60,7 @@ class Main extends Sprite {
 		this.addChild(gametitle);
 		rootSprite.addChild(this);
 
-		buttons = [new TextField(150, 50, "New Game", "5x7"), new TextField(150, 50, "Help", "5x7"), new TextField(150, 50, "Credits", "5x7")];
+		buttons = [new TextField(150, 50, "Begin Game", "5x7"), new TextField(150, 50, "Credits", "5x7")];
 		for (i in 0...buttons.length) {
 			var button = buttons[i];
 			button.fontSize = 24;
@@ -87,46 +87,25 @@ class Main extends Sprite {
 		
 		if (event.keyCode == Keyboard.SPACE) {
 			
-			var game = new Game(rootSprite);
-			game.start();
-			Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-			transitionOut(function() {
-				this.removeFromParent();
-				this.dispose();
-			});
-		
 			if (selection == 0) {
 				// NewGame
-				/*var game = new Game(rootSprite);
-				 game.start();
+				var game = new Game(rootSprite);
+				game.start();
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 				transitionOut(function() {
-				this.removeFromParent();
-				this.dispose();
-				});*/
+					this.removeFromParent();
+					this.dispose();
+				});
 			}
 			else if (selection == 1) {
-				// Help
-				/*
-				var help = new Help(rootSprite);
-				 game.start();
-				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-				transitionOut(function() {
-				this.removeFromParent();
-				this.dispose();
-				});*/
-
-			}
-			else if (selection == 2) {
 				// Credits
-				/*
 				var credits = new Credits(rootSprite);
-				 game.start();
+				credits.start();
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 				transitionOut(function() {
-				this.removeFromParent();
-				this.dispose();
-				});*/
+					this.removeFromParent();
+					this.dispose();
+				});
 
 			}
 		}
