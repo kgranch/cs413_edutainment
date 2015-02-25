@@ -54,7 +54,7 @@ class Grandpa extends Sprite
     }
 	private function scratch()
     {
-        var scratch1:Sound = Root.assets.getSound("scratch_sound_3");
+        var scratch:Sound = Root.assets.getSound("scratch_sound_3");
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaScratch_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
@@ -62,10 +62,13 @@ class Grandpa extends Sprite
         grandpaArt.loop = true;
         grandpaArt.addFrameAt(7,Root.assets.getTexture("GrandpaScratch_1"));    // adds the 1st frame to the end so his hand comes back down
         grandpaArt.setFrameDuration(7, 60);                                     // sets this last frame to last 60 seconds, then loops from the start
-        grandpaArt.setFrameSound(1, scratch1);
+        grandpaArt.setFrameSound(2, scratch);
+        grandpaArt.setFrameSound(3, scratch);
+        grandpaArt.setFrameSound(4, scratch);
+        grandpaArt.setFrameSound(5, scratch);
+        grandpaArt.setFrameSound(6, scratch);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
-		Root.assets.playSound("scratch_sound_1");
 	
     }
 	private function snore()
