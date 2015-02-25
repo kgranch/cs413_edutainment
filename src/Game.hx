@@ -103,8 +103,8 @@ class Game extends Sprite
 		grandpa.y = 190;
 		boy.x = 190;
 		boy.y = 250;
-		fire.x = 435;
-		fire.y = 235;
+		fire.x = 440;
+		fire.y = 228;
 		textBubble.x = 13;
 		textBubble.y = stageHeight - 80;
 		textBubble.smoothing = "none";
