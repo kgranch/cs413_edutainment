@@ -23,7 +23,7 @@ class Credits extends Sprite {
 	public var bg:Image;
 	private var transitionSpeed = 0.5;
 	public var bgcolor = 255;
-	public var credits:TextField = new TextField(400, 500, "This game was developed by:\n\nSean Baquiro\n\nJack Burell\n\nKyle Granchelli\n\nHarrison Lambeth\n\nDavid Terry", "5x7");
+	public var credits:TextField = new TextField(400, 500, "This game was developed by:\n\nSean Baquiro\n\nJack Burell\n\nKyle Granchelli\n\nHarrison Lambeth\n\nDavid Terry\n\n\nThe historical information used to write this game came from 'http://en.wikipedia.org/wiki/Great_Depression'", "5x7");
 	public function new(rootSprite:Sprite) {
 		this.rootSprite = rootSprite;
 		super();
