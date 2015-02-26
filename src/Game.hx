@@ -70,15 +70,14 @@ class Game extends Sprite
 		this.levelFile = "chapter1";
 		
 		introFields = [
-			new TextObject("Timmy, I want you to write a paper!!", Speakers.TEACHER, Backgrounds.SCHOOL),
-			new TextObject("OK! How about World War II?", Speakers.TIMMY, Backgrounds.SCHOOL),
-			new TextObject("No! That is an awful idea. Write about the Great Depression.", Speakers.TEACHER, Backgrounds.SCHOOL),
-			new TextObject("Aww :(                                  \nOkay then....", Speakers.TIMMY, Backgrounds.SCHOOL),
-			new TextObject("You're going to interview your grandpa. He has a bad memory, so correct\n" +
-						"him by hitting the [C] key.", Speakers.TEACHER, Backgrounds.SCHOOL),
-			new TextObject("Hey Grandpa, can you tell me a story about the Great Depression? \nI have a paper to write!", Speakers.TIMMY),
-			new TextObject("Sure, little Timmy, I'd love to!", Speakers.GRANDPA),
-			new TextObject("Let's see...                    \nWhere to begin...?                          \nAH! I know!", Speakers.GRANDPA)
+			new TextObject("Timmy, I want you to write me a history paper!", Speakers.TEACHER, Backgrounds.SCHOOL),
+			new TextObject("OK! What should I write it on? World War 2? I bet that would be awesome!", Speakers.TIMMY, Backgrounds.SCHOOL),
+			new TextObject("Psshh. Everyone does that. I want you to do something a little different. \nWasn't your grandpa alive during the Great Depression? \nYou should ask him to give you a lesson and write about that!", Speakers.TEACHER, Backgrounds.SCHOOL),
+			new TextObject("Um... but he's...                 \nso                 \nold! ", Speakers.TIMMY, Backgrounds.SCHOOL),
+			new TextObject("Don't be rude!!                       \nBut you're right...\nWell you're just going to have to listen closely and press [C] whenever you think he's misremembering something! Now GO!", Speakers.TEACHER, Backgrounds.SCHOOL),
+			new TextObject("... C?     \nnevermind...", Speakers.TIMMY, Backgrounds.SCHOOL),
+			new TextObject("Hey Grandpa, I'm writing a paper about the Great Depression, can you help me? \nI don't know very much about it.", Speakers.TIMMY),
+			new TextObject("Wuzzat? You wanna hear about the Depression?", Speakers.GRANDPA)
 		];
 		
 		outroFields = [
