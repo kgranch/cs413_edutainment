@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:c075f7abb2cb775328d38281baa5f437:e4f58096fa3d70196ad9a8d4519c14e3:707cdf9d30157b60bb194791eaa6e084$ -->
+<TextureAtlas imagePath="SpritesOld.png">
+    <SubTexture name="Boy_01" x="2" y="2" width="50" height="55"/>
+    <SubTexture name="Boy_02" x="54" y="2" width="50" height="55"/>
+    <SubTexture name="Boy_03" x="106" y="2" width="50" height="55"/>
+    <SubTexture name="Boy_04" x="54" y="2" width="50" height="55"/>
+    <SubTexture name="Boy_05" x="106" y="2" width="50" height="55"/>
+    <SubTexture name="Boy_06" x="54" y="2" width="50" height="55"/>
+    <SubTexture name="Boy_07" x="106" y="2" width="50" height="55"/>
+    <SubTexture name="Fire_1" x="158" y="2" width="35" height="50"/>
+    <SubTexture name="Fire_2" x="195" y="2" width="35" height="50"/>
+    <SubTexture name="Fire_3" x="232" y="2" width="35" height="50"/>
+    <SubTexture name="Fire_4" x="269" y="2" width="35" height="50"/>
+    <SubTexture name="Fire_5" x="306" y="2" width="35" height="50"/>
+    <SubTexture name="Fire_6" x="343" y="2" width="35" height="50"/>
+    <SubTexture name="Fire_7" x="380" y="2" width="35" height="50"/>
+    <SubTexture name="Fire_8" x="417" y="2" width="35" height="50"/>
+    <SubTexture name="GrandpaBubble_01" x="2" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_10" x="104" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_11" x="206" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_12" x="2" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_02" x="206" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_03" x="104" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_04" x="308" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_05" x="410" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_06" x="2" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_07" x="2" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_08" x="410" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaBubble_09" x="308" y="59" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_01" x="104" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_02" x="206" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_03" x="308" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_04" x="410" y="181" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_05" x="2" y="303" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_06" x="104" y="303" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_07" x="206" y="303" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_08" x="308" y="303" width="100" height="120"/>
+    <SubTexture name="GrandpaFart_09" x="410" y="303" width="100" height="120"/>
+    <SubTexture name="GrandpaMad" x="2" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaOrig" x="104" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaScratch_01" x="206" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaScratch_02" x="308" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaScratch_03" x="410" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaScratch_04" x="308" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaScratch_05" x="410" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaScratch_06" x="308" y="425" width="100" height="120"/>
+    <SubTexture name="GrandpaScratch_07" x="410" y="425" width="100" height="120"/>
+</TextureAtlas>

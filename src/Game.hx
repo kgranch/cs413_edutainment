@@ -96,7 +96,7 @@ class Game extends Sprite
 		var stage = Starling.current.stage;
 		var stageWidth:Float = Starling.current.stage.stageWidth;
 		var stageHeight:Float = Starling.current.stage.stageHeight;
-		
+
 		errorsSkipped = 0;
 		strikes = 0;
 		
@@ -122,13 +122,15 @@ class Game extends Sprite
 		textBubble.x = 13;
 		textBubble.y = stageHeight - 80;
 		textBubble.smoothing = "none";
+		grandpa.scratch();
+		boy.scratch();
 		this.addChild(bg);
 		this.addChild(grandpa);
 		this.addChild(teacher);
 		this.addChild(boy);
 		this.addChild(fire);
 		this.addChild(textBubble);
-		
+
 		strikeImages = new Array<Image>();
 		for (i in 0...3) {
 			var img = new Image(Root.assets.getTexture("StrikeGray"));
@@ -190,10 +192,12 @@ class Game extends Sprite
 						//CURRENTLY THE SOUND PLAYS AT THE SAME TIME AS THE WRONG SOUND
 						this.removeChild(grandpa);
 						grandpa = new Grandpa();
-						//grandpa.transitionF(this);
 						grandpa.x = 270;
 						grandpa.y = 190;
+						grandpa.fart();
 						this.addChild(grandpa);
+						//grandpa.transitionF(this);
+
 						
 						addStrike();
 					}
@@ -233,18 +237,21 @@ class Game extends Sprite
 		else if (event.keyCode == Keyboard.C) {
 		
 			//GRANDPA STARTS SCRATCHING OR SNORING WHEN YOU TRY TO CORRECT HIM
+			//this.removeChild(grandpa);
 			this.removeChild(grandpa);
 			grandpa = new Grandpa();
-			//grandpa.transitionS(this);
 			grandpa.x = 270;
 			grandpa.y = 190;
+			grandpa.scratch();
 			this.addChild(grandpa);
+			//grandpa.transitionS(this);
 			if (fieldState == FieldState.TEXT) {
 			
 				fieldState = FieldState.CORRECTION_TRANSITION;
 				currentSpeaker = Speakers.TIMMY;
-				startTextAnim();				
+				startTextAnim();
 				}
+
 		}
 		else if (fieldState == FieldState.CORRECTIONS) {
 			switch(event.keyCode) {
@@ -271,7 +278,7 @@ class Game extends Sprite
 	
 	function addStrike() {
 		//Plays wrong sound
-		Root.assets.playSound("wrong_sound_2");
+		//Root.assets.playSound("fart_sound_1");
 		strikeImages[strikes].texture = Root.assets.getTexture("Strike");
 		strikes++;
 		if (strikes == 4) {

@@ -25,11 +25,11 @@ class Teacher extends Sprite
     private function onAddedToStage(event:Event)
     {
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-        scratch();
+        start();
 
     }
 
-    private function scratch()
+    private function start()
     {
         //teacherArt = new MovieClip(Root.assets.getTextures("Boy_"), 6);
         //teacherArt.smoothing = "none";
