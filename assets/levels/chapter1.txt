@@ -13,9 +13,13 @@ Depression began in 1929, and ended around 1939. The event that marked the
 beginning of the Depression was the stock market crash. A crash happens when
 all of the stocks on the market suddenly become worthless!
 
-
 I
-Now why did all the stocks suddenly become worthless? 
+This statement is wrong!
+1. Correct answer
+2.wrong 1
+3.wrong2
+4.wrong3 
+
 
 Yeah, sorry about that...
 enim, dignissim sed sem nec, cursus varius nibh. Suspendisse nec erat ullamcorpe
