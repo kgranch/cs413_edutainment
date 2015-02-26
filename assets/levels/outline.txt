@@ -1,7 +1,7 @@
 1.Intro-Tut
 2.GD began in 1929 and went til 1939. It began with stock market crash. Explain some
 ~~~3. So why did the market crash? because people were buying too many flat-
-   screen TVs!!
+   screen TVs!! //switch w/ 5
 	1. Flat-screen TVs weren't invented yet!
 	2.People don't like TVs that much!
 	3.TVs aren't that expensive!
@@ -9,7 +9,7 @@
 3.Fine. So the market crashed because people lost faith in it and stopped buying
 anything at all.
 4.So what exactly is a stock market?
-5.Ok. Then how did it crash? the "bubble" popped
+5.Ok. Then how did it crash? the "bubble" popped //switch w/ 3
 ~~~6.what is a fiscal bubble? its this HUUUUGE bubble that the stock brokers
     throw their money into while they work.
 	1. the bubble is a figure of speech!

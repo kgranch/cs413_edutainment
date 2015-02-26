@@ -77,7 +77,7 @@ class Game extends Sprite
 			new TextObject("Don't be rude!!                       \nBut you're right...\nWell you're just going to have to listen closely and press [C] whenever you think he's misremembering something! Now GO!", Speakers.TEACHER, Backgrounds.SCHOOL),
 			new TextObject("... C?     \nnevermind...", Speakers.TIMMY, Backgrounds.SCHOOL),
 			new TextObject("Hey Grandpa, I'm writing a paper about the Great Depression, can you help me? \nI don't know very much about it.", Speakers.TIMMY),
-			new TextObject("Wuzzat? You wanna hear about the Depression?", Speakers.GRANDPA)
+			new TextObject("Wuzzat? You wanna hear about the Depression? Alright!", Speakers.GRANDPA)
 		];
 		
 		outroFields = [
