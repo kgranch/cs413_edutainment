@@ -45,7 +45,7 @@ class Credits extends Sprite {
 			credits.fontSize = 30;
 			credits.color = Color.WHITE;
 			credits.x = center.x - 200;
-			credits.y = 600;
+			credits.y = 400;
 			this.addChild(credits);
 			rootSprite.addChild(this);
 			scrollUp();
@@ -53,7 +53,7 @@ class Credits extends Sprite {
 		
 	private function scrollUp(){
 		var creditsTween = new Tween(credits, 10, Transitions.LINEAR);
-		creditsTween.animate("y", credits.y - 600);
+		creditsTween.animate("y", credits.y - 450);
 		Starling.juggler.add(creditsTween);
 	}
 	

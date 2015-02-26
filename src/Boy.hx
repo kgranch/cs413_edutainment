@@ -23,22 +23,22 @@ class Boy extends Sprite
     private function onAddedToStage(event:Event)
     {
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-        //scratch();
+        startAnim();
 
     }
 
-    private function scratch()
+    private function startAnim()
     {
-    /*
-        boyArt = new MovieClip(Root.assets.getTextures("Boy_"), 6);
+
+        boyArt = new MovieClip(Root.assets.getTextures("Boy"), 6);
         boyArt.smoothing = "none";
         boyArt.loop = true;
-        boyArt.addFrameAt(7, Root.assets.getTexture("Boy_1"));    // adds the 1st frame to the end so his hand comes back down
+        boyArt.addFrameAt(7, Root.assets.getTexture("Boy01"));    // adds the 1st frame to the end so his hand comes back down
         boyArt.setFrameDuration(0, 10);
         boyArt.setFrameDuration(7, 30);
         starling.core.Starling.juggler.add(boyArt);
         this.addChild(boyArt);
 		Root.assets.playSound("boy_scratch_sound_1");
-	*/
+
     }
 }
