@@ -1,6 +1,7 @@
 import flash.events.Event;
 import flash.media.Sound;
 import flash.media.SoundChannel;
+import flash.media.SoundTransform;
 import flash.net.URLRequest;
 import flash.ui.Keyboard;
 import flash.geom.Vector3D;
@@ -31,10 +32,6 @@ class Main extends Sprite {
 	public var gametitle:TextField;
 	public var center = new Vector3D(Starling.current.stage.stageWidth / 2.5, Starling.current.stage.stageHeight / 2.5);
 
-	public var sound:Sound = new Sound();
-	public var soundReq:URLRequest = new URLRequest("assets/Snaketris.mp3");
-	public var soundChannel:SoundChannel;
-
 	public function new(rootSprite:Sprite) {
 		this.rootSprite = rootSprite;
 		super();
@@ -49,6 +46,7 @@ class Main extends Sprite {
 		this.scaleX = 8;
 		this.scaleY = 8;
 		bg = new Image(Root.assets.getTexture("Intro"));
+		Root.assets.playSound("GrandpaTallTales", 0, 9999);
 		gametitle = new TextField(350, 50, "Grandpa's Tall Tales", "5x7");
 		gametitle.text = "Grandpa's Tall Tales";
 		gametitle.fontSize = 45;
@@ -93,6 +91,7 @@ class Main extends Sprite {
 				game.start();
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 				transitionOut(function() {
+					Root.assets.removeSound("GrandpaTallTales");
 					this.removeFromParent();
 					this.dispose();
 				});
@@ -103,9 +102,10 @@ class Main extends Sprite {
 				credits.start();
 				Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 				transitionOut(function() {
+					Root.assets.removeSound("GrandpaTallTales");
 					this.removeFromParent();
 					this.dispose();
-				});
+			});
 
 			}
 		}

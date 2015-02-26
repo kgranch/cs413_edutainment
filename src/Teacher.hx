@@ -10,6 +10,7 @@ import flash.media.SoundChannel;
 import flash.media.Sound;
 
 
+
 class Teacher extends Sprite
 {
 
