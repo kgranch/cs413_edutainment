@@ -190,7 +190,7 @@ class Game extends Sprite
 						//CURRENTLY THE SOUND PLAYS AT THE SAME TIME AS THE WRONG SOUND
 						this.removeChild(grandpa);
 						grandpa = new Grandpa();
-						grandpa.transitionF(this);
+						//grandpa.transitionF(this);
 						grandpa.x = 270;
 						grandpa.y = 190;
 						this.addChild(grandpa);
@@ -235,7 +235,7 @@ class Game extends Sprite
 			//GRANDPA STARTS SCRATCHING OR SNORING WHEN YOU TRY TO CORRECT HIM
 			this.removeChild(grandpa);
 			grandpa = new Grandpa();
-			grandpa.transitionS(this);
+			//grandpa.transitionS(this);
 			grandpa.x = 270;
 			grandpa.y = 190;
 			this.addChild(grandpa);

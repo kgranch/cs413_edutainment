@@ -23,12 +23,13 @@ class Boy extends Sprite
     private function onAddedToStage(event:Event)
     {
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-        scratch();
+        //scratch();
 
     }
 
     private function scratch()
     {
+    /*
         boyArt = new MovieClip(Root.assets.getTextures("Boy_"), 6);
         boyArt.smoothing = "none";
         boyArt.loop = true;
@@ -38,5 +39,6 @@ class Boy extends Sprite
         starling.core.Starling.juggler.add(boyArt);
         this.addChild(boyArt);
 		Root.assets.playSound("boy_scratch_sound_1");
+	*/
     }
 }

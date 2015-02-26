@@ -23,10 +23,11 @@ class Grandpa extends Sprite
     {
 		
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-		sit();
+		//sit();
 		
 		
     }
+    /*
 	public function transitionS(game:Game){
 		var x =  Std.random(100);
 		if(x <60 ){
@@ -42,18 +43,21 @@ class Grandpa extends Sprite
 		game.removeChild(grandpaArt);
 		fart();
 	}
+	*/
 	private function sit()
     {
+    /*
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaOrig"));
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
 		grandpaArt.smoothing = "none";
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
-
+    */
     }
 	private function scratch()
     {
+    /*
         var scratch:Sound = Root.assets.getSound("scratch_sound_3");
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaScratch_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
@@ -69,20 +73,22 @@ class Grandpa extends Sprite
         grandpaArt.setFrameSound(6, scratch);
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
-	
+	*/
     }
 	private function snore()
     {
+    /*
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaBubble_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
 		grandpaArt.smoothing = "none";
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
-
+    */
     }
     private function fart()
     {
+    /*
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaFart_"), 5);
         grandpaArt.x = Math.ceil(-grandpaArt.width/2 + 50);
         grandpaArt.y = Math.ceil( -grandpaArt.height / 2 + 50);
@@ -90,9 +96,6 @@ class Grandpa extends Sprite
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
 		Root.assets.playSound("fart_sound_1");
-
+    */
     }
-	
-	
-	
 }

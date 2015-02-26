@@ -37,7 +37,7 @@ class Teacher extends Sprite
         //teacherArt.setFrameDuration(0, 10);
         //teacherArt.setFrameDuration(7, 30);
         //starling.core.Starling.juggler.add(teacherArt);
-        teacherArt = new Image(Root.assets.getTexture("Teacher_1"));
+        teacherArt = new Image(Root.assets.getTexture("Teacher01"));
         teacherArt.scaleX = -2.0;
         teacherArt.scaleY = 2.0;
         teacherArt.smoothing = "none";
