@@ -23,7 +23,7 @@ class Grandpa extends Sprite
     {
 		
         this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-
+		
     }
 
 	public function transitionS(game:Game){
@@ -76,6 +76,7 @@ class Grandpa extends Sprite
 		grandpaArt.smoothing = "none";
         starling.core.Starling.juggler.add(grandpaArt);
         this.addChild(grandpaArt);
+		Root.assets.playSound("snore_sound_2");
 
     }
     public function fart()
@@ -83,7 +84,7 @@ class Grandpa extends Sprite
         grandpaArt = new MovieClip(Root.assets.getTextures("GrandpaFart_"), 15);
 		grandpaArt.smoothing = "none";
         grandpaArt.addFrameAt(9, Root.assets.getTexture("GrandpaMad"));
-        grandpaArt.setFrameDuration(9, 3);
+        grandpaArt.setFrameDuration(9, 1);
         grandpaArt.addFrameAt(10, Root.assets.getTexture("GrandpaOrig"));
         grandpaArt.loop = false;
         starling.core.Starling.juggler.add(grandpaArt);
