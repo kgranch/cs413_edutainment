@@ -37,6 +37,7 @@ class GameOver extends Sprite {
 	var numFields:Int;
 	var errors:Int;
 	var strikes:Int;
+	var numCorrect:Int;
 	
 	var paperContainer:Sprite;
 	var paper:Image;
@@ -64,12 +65,13 @@ class GameOver extends Sprite {
 	var angryFilter:SelectorFilter;
 	var normalFilter:SelectorFilter;
 
-	public function new(rootSprite:Sprite, progress:Int, numFields:Int, errors:Int, strikes:Int) {
+	public function new(rootSprite:Sprite, progress:Int, numFields:Int, numCorrect:Int, errors:Int, strikes:Int) {
 		this.rootSprite = rootSprite;
 		this.progress = progress;
 		this.numFields = numFields;
 		this.errors = errors;
 		this.strikes = strikes;
+		this.numCorrect = numCorrect;
 		
 		super();
 	}
@@ -124,7 +126,7 @@ class GameOver extends Sprite {
 		paperContainer.addChild(paperBody);
 		
 		var completeness = (progress / numFields) * 100;
-		var score = (progress - 2 * errors) / numFields * 100;
+		var score = ((progress - (2 * errors)) / numCorrect) * 100;
 		var gradeLookup = [
 			{ g: 100, a: "A_Plus",	m: "Perfect! I couldn't have done better myself!" },
 			{ g: 95, a: "A_Plus",	m: "Fantastic! This paper is wonderful!" },

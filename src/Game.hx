@@ -33,6 +33,7 @@ class Game extends Sprite
 	
 	var errorsSkipped = 0;
 	var strikes = 0;
+	var numCorrect = 0;
 	var fieldProgress = 0; // Determines what textobject should be popped next
 	var fields:Array<TextObject>; // All of the textobject fields
 	var introFields:Array<TextObject>; // All of the intro fields
@@ -327,7 +328,7 @@ class Game extends Sprite
 		if (strikes == 4) {
 			
 			// Exit
-			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, errorsSkipped, strikes);
+			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, numCorrect, errorsSkipped, strikes);
 			gameover.start();
 			cleanup();
 			transitionOut(function() {
@@ -342,7 +343,7 @@ class Game extends Sprite
 		if (currentField == null)
 		{
 			// Exit
-			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, errorsSkipped, strikes);
+			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, numCorrect, errorsSkipped, strikes);
 			gameover.start();
 			cleanup();
 			transitionOut(function() {
@@ -460,6 +461,7 @@ class Game extends Sprite
 					field.options.push(bi.readLine().substr(3));
 					field.options.push(bi.readLine().substr(3));
 					field.revised = bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine();
+					numCorrect += 1;
 				}
 				fields.push(field);
 			}
