@@ -103,32 +103,37 @@ class Game extends Sprite
 		addEventListener(Event.ENTER_FRAME, onEnterFrame);
 
 		bg = new Image(Root.assets.getTexture("Background"));
-		grandpa = new Grandpa();
-		boy = new Boy();
+
 		fire = new Fire();
 		teacher = new Teacher();
 		textBubble = new Image(Root.assets.getTexture("TextBubble"));
 
 		bg.smoothing = "none";
-		grandpa.x = 270;
-		grandpa.y = 190;
+
 		teacher.x = 170;
 		teacher.y = 190;
-		boy.x = 190;
-		boy.y = 250;
+
 		fire.x = 440;
 		fire.y = 228;
 		textBubble.x = 13;
 		textBubble.y = stageHeight - 80;
 		textBubble.smoothing = "none";
-		grandpa.scratch();
-		boy.scratch();
+
+		grandpa = new Grandpa();
+		boy = new Boy();
+		grandpa.x = 270;
+		grandpa.y = 190;
+		boy.x = 190;
+		boy.y = 250;
+
 		this.addChild(bg);
 		this.addChild(grandpa);
-		this.addChild(teacher);
 		this.addChild(boy);
+		this.addChild(teacher);
 		this.addChild(fire);
 		this.addChild(textBubble);
+		grandpa.scratch();
+		boy.scratch();
 
 		strikeImages = new Array<Image>();
 		for (i in 0...3) {
@@ -166,7 +171,7 @@ class Game extends Sprite
 		currentSpeaker = currentField.speaker;
 		
 		startTextAnim();
-		
+
 		rootSprite.addChild(this);
 		
 	}
@@ -188,13 +193,12 @@ class Game extends Sprite
 						currentSpeaker = Speakers.GRANDPA;						
 						
 						//GRANDPA WILL FART OUT OF EXCITEMENT FOR BEING CORRECT
-						//CURRENTLY THE SOUND PLAYS AT THE SAME TIME AS THE WRONG SOUND
-						this.removeChild(grandpa);
-						grandpa = new Grandpa();
-						grandpa.x = 270;
-						grandpa.y = 190;
+
+						//this.removeChild(grandpa);
+						//grandpa = new Grandpa();
+						//grandpa.x = 270;
+						//grandpa.y = 190;
 						grandpa.fart();
-						this.addChild(grandpa);
 						//grandpa.transitionF(this);
 
 						
@@ -236,13 +240,7 @@ class Game extends Sprite
 		else if (event.keyCode == Keyboard.C) {
 		
 			//GRANDPA STARTS SCRATCHING OR SNORING WHEN YOU TRY TO CORRECT HIM
-			//this.removeChild(grandpa);
-			this.removeChild(grandpa);
-			grandpa = new Grandpa();
-			grandpa.x = 270;
-			grandpa.y = 190;
-			grandpa.scratch();
-			this.addChild(grandpa);
+			grandpa.snore();
 			//grandpa.transitionS(this);
 			if (fieldState == FieldState.TEXT) {
 			
@@ -396,7 +394,7 @@ class Game extends Sprite
 	}
 	
 	function load() {
-		
+
 		var byteArray = Root.assets.getByteArray(this.levelFile);
 		var bytes = Bytes.ofData(byteArray);
 		var bi = new BytesInput(bytes);
