@@ -9,7 +9,10 @@ import starling.filters.BlurFilter;
 import starling.filters.SelectorFilter;
 import starling.animation.Transitions;
 import starling.animation.Tween;
-
+import starling.display.MovieClip;
+import starling.animation.Juggler;
+import starling.textures.Texture;
+import starling.textures.TextureAtlas;
 import flash.media.SoundTransform;
 import flash.media.SoundChannel;
 import flash.media.Sound;
@@ -54,7 +57,7 @@ class Game extends Sprite
 	var bg:Image;
 	var textBubble:Image;
 	var speakerHead:Image;
-	var grandpa:Grandpa;
+	var grandpa:MovieClipPlus;
 	var teacher:Teacher;
 	var boy:Boy;
 	var fire: Fire;
@@ -119,7 +122,7 @@ class Game extends Sprite
 		textBubble.y = stageHeight - 80;
 		textBubble.smoothing = "none";
 
-		grandpa = new Grandpa();
+		grandpa = new MovieClipPlus(Root.assets.getTextures("Grandpa"), 5);
 		boy = new Boy();
 		grandpa.x = 270;
 		grandpa.y = 190;
@@ -127,13 +130,24 @@ class Game extends Sprite
 		boy.y = 250;
 
 		this.addChild(bg);
-		this.addChild(grandpa);
 		this.addChild(boy);
 		this.addChild(teacher);
 		this.addChild(fire);
 		this.addChild(textBubble);
-		grandpa.scratch();
 		boy.scratch();
+		
+		var scratch:Sound = Root.assets.getSound("scratch_sound_3");
+		grandpa.setNext(6,0);
+		grandpa.smoothing = "none";
+        grandpa.loop = true;
+        grandpa.setFrameDuration(0,4);
+        grandpa.setFrameSound(2, scratch);
+        grandpa.setFrameSound(3, scratch);
+        grandpa.setFrameSound(4, scratch);
+        grandpa.setFrameSound(5, scratch);
+        grandpa.setFrameSound(6, scratch);
+        starling.core.Starling.juggler.add(grandpa);
+        this.addChild(grandpa);
 
 		strikeImages = new Array<Image>();
 		for (i in 0...3) {
@@ -198,8 +212,14 @@ class Game extends Sprite
 						//grandpa = new Grandpa();
 						//grandpa.x = 270;
 						//grandpa.y = 190;
-						grandpa.fart();
+						//grandpa.fart();
 						//grandpa.transitionF(this);
+						//breaks it grandpa = new MovieClipPlus(Root.assets.getTextures("grandpa"),15);
+						grandpa.setNext(29,19);
+						grandpa.setFrameDuration(9, 1);
+						grandpa.loop = false;
+						starling.core.Starling.juggler.add(grandpa);
+						Root.assets.playSound("fart_sound_1");
 
 						
 						addStrike();
@@ -240,7 +260,7 @@ class Game extends Sprite
 		else if (event.keyCode == Keyboard.C) {
 		
 			//GRANDPA STARTS SCRATCHING OR SNORING WHEN YOU TRY TO CORRECT HIM
-			grandpa.snore();
+			//grandpa.snore();
 			//grandpa.transitionS(this);
 			if (fieldState == FieldState.TEXT) {
 			
