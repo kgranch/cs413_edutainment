@@ -84,8 +84,8 @@ class Game extends Sprite
 		];
 		
 		outroFields = [
-			new TextObject("Well, that's all I've got for you today, Timmy. Good luck on your paper!", Speakers.GRANDPA),
-			new TextObject("Okay Gramps.. Thanks for all of the help! See ya!", Speakers.TIMMY),
+			new TextObject("Well... On THAT note... I guess we're done here. \nI'm sure that will be enough for your paper!", Speakers.GRANDPA),
+			new TextObject("Sure Gramps! Thanks a lot for your help!", Speakers.TIMMY),
 			new TextObject("Hey teach. I got my paper finished!", Speakers.TIMMY, Backgrounds.SCHOOL),
 			new TextObject("Okay. Let's see how you did. I'm expecting a lot from you this time.", Speakers.TEACHER, Backgrounds.SCHOOL)
 		];
