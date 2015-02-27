@@ -264,9 +264,28 @@ class Game extends Sprite
 		}
 		else if (event.keyCode == Keyboard.C) {
 		
-			//GRANDPA STARTS SCRATCHING OR SNORING WHEN YOU TRY TO CORRECT HIM
+			//GRANDPA STARTS SNORING WHEN YOU TRY TO CORRECT HIM
 			//grandpa.snore();
 			//grandpa.transitionS(this);
+			
+			var snore:Sound = Root.assets.getSound("snore_sound_2");
+			grandpa.gotoAndPlay(7);
+			grandpa.setNext(18,7);
+			grandpa.setNext(18,0);
+			grandpa.setFrameSound(8, snore);
+			grandpa.setFrameSound(9, snore);
+			grandpa.setFrameSound(10, snore);
+			grandpa.setFrameSound(11, snore);
+			grandpa.setFrameSound(12, snore);
+			grandpa.setFrameSound(13, snore);
+			grandpa.setFrameSound(14, snore);
+			grandpa.setFrameSound(15, snore);
+			grandpa.setFrameSound(16, snore);
+			grandpa.setFrameSound(17, snore);
+			grandpa.setFrameSound(18, snore);
+			starling.core.Starling.juggler.add(grandpa);
+
+			
 			if (fieldState == FieldState.TEXT) {
 			
 				fieldState = FieldState.CORRECTION_TRANSITION;
