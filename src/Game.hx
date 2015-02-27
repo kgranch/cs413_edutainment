@@ -217,7 +217,7 @@ class Game extends Sprite
 
 						grandpa.gotoAndPlay(19);
 						grandpa.setNext(29,20);
-						grandpa.setNext(29,29);
+						grandpa.setNext(29,0);
 						//grandpa.pause();
 						//grandpa.setFrameDuration
 						//grandpa.loop = false;
