@@ -34,7 +34,7 @@ class GameOver extends Sprite {
 	public var center = new Vector3D(Starling.current.stage.stageWidth / 2.5, Starling.current.stage.stageHeight / 2.5);
 	
 	var progress:Int;
-	var numFields:Int;
+	var numFields = 17;
 	var errors:Int;
 	var strikes:Int;
 	var numCorrect:Int;
@@ -65,7 +65,7 @@ class GameOver extends Sprite {
 	var angryFilter:SelectorFilter;
 	var normalFilter:SelectorFilter;
 
-	public function new(rootSprite:Sprite, progress:Int, numFields:Int, numCorrect:Int, errors:Int, strikes:Int) {
+	public function new(rootSprite:Sprite, progress:Int, numFields:Int, numCorrect:Int, errors:Int, strikes:Int, progress:Int) {
 		this.rootSprite = rootSprite;
 		this.progress = progress;
 		this.numFields = numFields;
@@ -126,7 +126,7 @@ class GameOver extends Sprite {
 		paperContainer.addChild(paperBody);
 		
 		var completeness = (progress / numFields) * 100;
-		var score = ((progress - (2 * errors)) / numCorrect) * 100;
+		var score = completeness-10*errors;
 		var gradeLookup = [
 			{ g: 100, a: "A_Plus",	m: "Perfect! I couldn't have done better myself!" },
 			{ g: 95, a: "A_Plus",	m: "Fantastic! This paper is wonderful!" },

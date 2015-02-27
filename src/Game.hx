@@ -30,7 +30,7 @@ class Game extends Sprite
 	
 	var rootSprite:Sprite;
 	var levelFile:String;
-	
+	var progress = 0;
 	var errorsSkipped = 0;
 	var strikes = 0;
 	var numCorrect = 0;
@@ -328,7 +328,7 @@ class Game extends Sprite
 		if (strikes == 4) {
 			
 			// Exit
-			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, numCorrect, errorsSkipped, strikes);
+			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, numCorrect, errorsSkipped, strikes, progress);
 			gameover.start();
 			cleanup();
 			transitionOut(function() {
@@ -343,7 +343,7 @@ class Game extends Sprite
 		if (currentField == null)
 		{
 			// Exit
-			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, numCorrect, errorsSkipped, strikes);
+			var gameover = new GameOver(rootSprite, fieldProgress, fields.length, numCorrect, errorsSkipped, strikes, progress);
 			gameover.start();
 			cleanup();
 			transitionOut(function() {
@@ -462,7 +462,9 @@ class Game extends Sprite
 					field.options.push(bi.readLine().substr(3));
 					field.revised = bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine() + "\n" + bi.readLine();
 					numCorrect += 1;
+				
 				}
+				progress++;
 				fields.push(field);
 			}
 		} catch (e:Eof) { }
