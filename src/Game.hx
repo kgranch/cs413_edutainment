@@ -139,8 +139,7 @@ class Game extends Sprite
 		var scratch:Sound = Root.assets.getSound("scratch_sound_3");
 		grandpa.setNext(6,0);
 		grandpa.smoothing = "none";
-        grandpa.loop = true;
-        grandpa.setFrameDuration(0,4);
+        grandpa.setFrameDuration(0,10);
         grandpa.setFrameSound(2, scratch);
         grandpa.setFrameSound(3, scratch);
         grandpa.setFrameSound(4, scratch);
@@ -215,11 +214,17 @@ class Game extends Sprite
 						//grandpa.fart();
 						//grandpa.transitionF(this);
 						//breaks it grandpa = new MovieClipPlus(Root.assets.getTextures("grandpa"),15);
-						grandpa.setNext(29,19);
-						grandpa.setFrameDuration(9, 1);
-						grandpa.loop = false;
+
+						grandpa.gotoAndPlay(19);
+						grandpa.setNext(29,20);
+						grandpa.setNext(29,29);
+						//grandpa.pause();
+						//grandpa.setFrameDuration
+						//grandpa.loop = false;
+						//grandpa.setFrameDuration(9, 1);
 						starling.core.Starling.juggler.add(grandpa);
 						Root.assets.playSound("fart_sound_1");
+
 
 						
 						addStrike();
