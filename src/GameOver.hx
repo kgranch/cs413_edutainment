@@ -34,7 +34,7 @@ class GameOver extends Sprite {
 	public var center = new Vector3D(Starling.current.stage.stageWidth / 2.5, Starling.current.stage.stageHeight / 2.5);
 	
 	var progress:Int;
-	var numFields = 17;
+	var numFields:Int;
 	var errors:Int;
 	var strikes:Int;
 	var numCorrect:Int;
