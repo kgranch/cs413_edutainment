@@ -34,8 +34,8 @@ class Boy extends Sprite
         boyArt.smoothing = "none";
         boyArt.loop = true;
         boyArt.addFrameAt(7, Root.assets.getTexture("Boy_01"));    // adds the 1st frame to the end so his hand comes back down
-        boyArt.setFrameDuration(0, 2);
-        boyArt.setFrameDuration(7, 15);
+        boyArt.setFrameDuration(0, 35);
+        boyArt.setFrameDuration(7, 1);
         boyArt.setFrameSound(3, scratch);
         boyArt.setFrameSound(5, scratch);
         boyArt.setFrameSound(7, scratch);

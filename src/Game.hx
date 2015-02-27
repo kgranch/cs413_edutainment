@@ -139,7 +139,7 @@ class Game extends Sprite
 		var scratch:Sound = Root.assets.getSound("scratch_sound_3");
 		grandpa.setNext(6,0);
 		grandpa.smoothing = "none";
-        grandpa.setFrameDuration(0,10);
+        grandpa.setFrameDuration(0,40);
         grandpa.setFrameSound(2, scratch);
         grandpa.setFrameSound(3, scratch);
         grandpa.setFrameSound(4, scratch);
@@ -193,6 +193,8 @@ class Game extends Sprite
 		Starling.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 		removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 		animTimer.stop();
+		this.removeFromParent;
+		this.dispose;
 	}
 	
 	function onKeyDown(event:KeyboardEvent) {
